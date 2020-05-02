@@ -1,4 +1,13 @@
 {
   "users": [
+    {
+      "id": "95975486-bbff-4ee1-a992-c9a801ef04e3",
+      "firstName": "Adeyinka",
+      "lastName": "Adebiyi",
+      "username": "",
+      "email": "yinkash1000@gmail.com",
+      "password": "aaa",
+      "retypePassword": "aaa"
+    }
   ]
 }

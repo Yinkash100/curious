@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app color="accent" relative bottom>
+  <v-app-bar app color="accent" relative>
     <Logo />
     <v-spacer />
     <v-btn
@@ -22,19 +22,19 @@ export default {
       links: [
         {
           label: 'Login',
-          url: '/login'
+          url: '/login',
         },
         {
           label: 'Join',
-          url: '/signup'
+          url: '/signup',
         },
         {
           label: 'Ask',
-          url: '/'
-        }
-      ]
+          url: '/',
+        },
+      ],
     }
-  }
+  },
 }
 </script>
 

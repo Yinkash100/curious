@@ -5,10 +5,10 @@
         <v-card class="signup-card mx-auto" raised>
           <v-row>
             <v-col v-if="!showMainForm" :cols="6">
-              <v-card class="mx-4 my-auto" height="500px">
+              <v-card class="mx-4 pa-5 my-auto">
                 <v-card-text>
                   <div class="signup-info">
-                    <p>
+                    <p class="font-weight-black text-center">
                       Want to see Verified Answers?<br />
                       Get started with a free account!
                     </p>
@@ -20,6 +20,7 @@
                       width="80%"
                       rounded
                       color="#3B5998"
+                      @click="audioNotification('success')"
                     >
                       Register with facebook
                       <v-icon>mdi-facebook</v-icon>
@@ -32,36 +33,41 @@
                       width="80%"
                       rounded
                       color="#DB4437"
+                      @click="audioNotification('error')"
                     >
                       Register with Google
                       <v-icon>mdi-google-plus</v-icon>
                     </v-btn>
                   </v-card-actions>
-                  <v-divider />
+                  <v-divider class="ma-2" />
                   <v-card-actions
                     v-if="!emailRegistration"
                     class="justify-center"
                   >
                     <v-btn
-                      @click="showEmailField"
                       class="ma-2 mx-auto"
                       width="80%"
                       rounded
                       color="primary"
+                      @click="showEmailField"
                     >
                       Register with Email
                     </v-btn>
                   </v-card-actions>
                   <v-card-text v-if="emailRegistration" class="justify-center">
-                    <v-form>
+                    <v-form @submit.prevent="openEmailRegistration">
                       <v-text-field
                         v-model="user.email"
-                        @blur="$v.user.email.$touch()"
-                        type="email"
                         label="Email Address"
+                        class="ma-0 pa-0"
+                        loader-height="1"
                         required
-                        prepend-icon="mdi-at"
-                      />
+                        outlined
+                        dense
+                        @blur="$v.user.email.$touch()"
+                      >
+                        <v-icon primary>mdi-email</v-icon>
+                      </v-text-field>
                       <template v-if="$v.user.email.$error">
                         <p v-if="!$v.user.email.required" class="errorMessage">
                           Email is required
@@ -72,29 +78,22 @@
                       </template>
                       <v-checkbox
                         v-model="user.checkbox"
-                        @blur="$v.user.checkbox.$touch()"
+                        :value="user.checkbox.value"
                         label="By checking this box, you agree to our terms of
                         service"
-                        required
+                        @blur="$v.user.checkbox.$touch()"
                       ></v-checkbox>
                       <template v-if="$v.user.checkbox.$error">
-                        <p
-                          v-if="!$v.user.checkbox.required"
-                          class="errorMessage"
-                        >
+                        <p v-if="!$v.user.checkbox.sameAs" class="errorMessage">
                           Please Agree to our
                           <nuxt-link to="/termsAndConditions">
                             terms of service
                           </nuxt-link>
                         </p>
                       </template>
-                      <v-btn
-                        @click="openEmailRegistration"
-                        class="mr-4"
-                        color="primary"
-                      >
-                        Next <v-icon>mdi-chevron-right</v-icon></v-btn
-                      >
+                      <v-btn class="mr-4" type="submit" color="primary">
+                        Next <v-icon>mdi-chevron-right</v-icon>
+                      </v-btn>
                     </v-form>
                   </v-card-text>
                   <p>
@@ -104,13 +103,15 @@
                 </v-card-text>
               </v-card>
             </v-col>
-            <v-col v-else :cols="6">
-              <SignupForm :email="user.email" />
+            <v-col v-else>
+              <v-card height="500px" class="mx-4">
+                <SignupForm :email="user.email" />
+              </v-card>
             </v-col>
             <v-divider vertical />
             <v-col :cols="5" class="my-5 mx-4">
               <Logo class="text-xs-center" />
-              <h2>
+              <h2 class="text-uppercase mb-2">
                 Join us and lets start sharing knowledge
               </h2>
               <p>
@@ -126,15 +127,15 @@
 </template>
 
 <script>
+import { required, email, sameAs } from 'vuelidate/lib/validators'
 import Logo from '@/components/Logo'
 import SignupForm from '@/components/SignupForm'
-import { required, email } from 'vuelidate/lib/validators'
 
 export default {
   name: 'Signup',
   components: {
     Logo,
-    SignupForm
+    SignupForm,
   },
   data() {
     return {
@@ -142,58 +143,72 @@ export default {
       showMainForm: false,
       user: {
         email: '',
-        checkbox: ''
-      }
+        checkbox: '',
+      },
+      errorMessage: {
+        email: '',
+      },
     }
   },
   validations: {
     user: {
-      checkbox: { required },
-      email: { required, email }
-    }
+      checkbox: {
+        sameAs: sameAs(() => true),
+      },
+      email: { required, email },
+    },
   },
+  watch: {
+    user() {
+      if (!this.$v.user.email.required) {
+        this.errorMessage.email = 'Email is required'
+      } else if (!this.$v.user.email.email) {
+        this.errorMessage.email = 'Please enter a valid email'
+      } else {
+        this.errorMessage.email = ''
+      }
+    },
+  },
+  created() {},
   methods: {
     showEmailField() {
       this.emailRegistration = true
     },
     openEmailRegistration() {
       this.$v.$touch()
-      if (!this.$v$invalid) {
+      if (this.$v.$invalid) {
+        this.$store.dispatch(
+          'notification/add',
+          {
+            type: 'error',
+            message: 'please fill the required fields first',
+          },
+          { root: true }
+        )
+      } else {
         this.showMainForm = true
       }
-    }
-  }
+    },
+    audioNotification(type) {
+      const notification = {
+        type,
+        message: 'Your event has been created',
+      }
+      this.$store.dispatch('notification/add', notification, { root: true })
+    },
+    formErrors() {
+      let email = ''
+      if (!this.$v.user.email.required) {
+        email = 'Email is required'
+      } else if (!this.$v.user.email.email) {
+        email = 'Please enter a valid email'
+      } else {
+        email = ''
+      }
+      return email
+    },
+  },
 }
 </script>
 
-<style scoped>
-.errorMessage {
-  color: red;
-}
-/*.signup {*/
-/*  position: relative;*/
-
-/*  &-card {*/
-/*    position: absolute;*/
-/*    //z-index: -1;*/
-/*    //bottom: initial;*/
-/*    top: 50%;*/
-/*    left: 50%;*/
-/*    margin: auto;*/
-/*    //transform: translate(-50%, -50%);*/
-/*    text-align: center;*/
-/*  }*/
-
-/*  &-info {*/
-/*    font-size: 0.5rem;*/
-/*  }*/
-/*}*/
-
-/*.third-party-signup {*/
-/*  color: white;*/
-/*  margin: 2rem auto 1rem;*/
-/*}*/
-/*.curious-signup {*/
-/*  margin: 2rem auto 1rem;*/
-/*}*/
-</style>
+<style scoped></style>
