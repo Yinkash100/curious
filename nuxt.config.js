@@ -34,7 +34,10 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: '~plugins/Vuelidate.js', ssr: false }],
+  plugins: [
+    { src: '~plugins/Vuelidate.js', ssr: false },
+    { src: '~plugins/auth.js' },
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -46,7 +49,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: [],
+  modules: ['cookie-universal-nuxt'],
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
@@ -59,8 +62,8 @@ export default {
       themes: {
         dark: {
           primary: '#293D6E',
-          accent: '#e3ebff',
-          secondary: '#c8d0e3',
+          accent: '#999BBE',
+          secondary: '#e0ecff',
           info: '#008080',
           warning: '#f0ad4e',
           error: '#d9534f',
@@ -77,5 +80,11 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {},
+  },
+  /*
+   ** Self definde for routers
+   */
+  router: {
+  //  middleware: 'requiresAuth',
   },
 }

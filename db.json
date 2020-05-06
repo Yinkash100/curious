@@ -8,6 +8,29 @@
       "email": "yinkash1000@gmail.com",
       "password": "aaa",
       "retypePassword": "aaa"
+    },
+    {
+      "id": "f942ce71-ef21-41b9-8ecd-5c2550310bf3",
+      "firstName": "antetokunpo",
+      "lastName": "Giannis",
+      "username": "",
+      "email": "yinkash1000@gmail.com",
+      "password": "$2a$10$FNgnKAB.4k/VEaxO/PHU0uw5KKCumLQzdX1PlR4TtHuaEwtBC1.1O"
+    },
+    {
+      "email": "adebiyiadeyinka41@yahoo.com",
+      "password": "$2a$10$XTuOZjWVCF3MPfjP6G8j.uLOIFmLFg.ExkxHMz2yEkVUi4TzJIWZi",
+      "id": "41ed4f57-0d4d-4e69-85db-736652902201",
+      "firstName": "Peju",
+      "lastName": "Omobolanle",
+      "username": ""
+    },
+    {
+      "email": "yinkash1@gmail.com",
+      "password": "$2a$10$7TL1KYcOmtWF4c0spU8IVey8bqgHNQuAfMXmYQttw5hMuqKwYUjfW",
+      "id": "762089b9-c7b7-415d-a45d-f1dc1fc9dce0",
+      "firstName": "Omobaba",
+      "lastName": "419"
     }
   ]
 }

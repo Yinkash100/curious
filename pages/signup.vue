@@ -1,7 +1,7 @@
 <template>
   <v-content class="signup">
     <v-row>
-      <v-col :cols="8" :z-index="10" offset-md="2" top="10">
+      <v-col :cols="8" :z-index="10" offset-md="2">
         <v-card class="signup-card mx-auto" raised>
           <v-row>
             <v-col v-if="!showMainForm" :cols="6">
@@ -133,6 +133,7 @@ import SignupForm from '@/components/SignupForm'
 
 export default {
   name: 'Signup',
+  meta: { requiresAuth: false },
   components: {
     Logo,
     SignupForm,
@@ -156,17 +157,6 @@ export default {
         sameAs: sameAs(() => true),
       },
       email: { required, email },
-    },
-  },
-  watch: {
-    user() {
-      if (!this.$v.user.email.required) {
-        this.errorMessage.email = 'Email is required'
-      } else if (!this.$v.user.email.email) {
-        this.errorMessage.email = 'Please enter a valid email'
-      } else {
-        this.errorMessage.email = ''
-      }
     },
   },
   created() {},

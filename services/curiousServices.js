@@ -1,8 +1,8 @@
 import axios from 'axios'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 
 const apiClient = axios.create({
-  baseURL: `http://localhost:3000`,
+  baseURL: `http://localhost:3001`,
   withCredentials: false, // This is the default
   headers: {
     Accept: 'application/json',
@@ -21,5 +21,9 @@ export default {
     const saltRounds = 10
 
     return bcrypt.hashSync(password, saltRounds)
+  },
+
+  loginUser(credentials) {
+    return apiClient.post('/login', credentials)
   },
 }
