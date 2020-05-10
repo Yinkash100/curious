@@ -7,7 +7,7 @@
 <script>
 export default {
   name: 'DashboardVue',
-  meta: { requiresAuth: true },
+  auth: true,
   data() {
     return {}
   },

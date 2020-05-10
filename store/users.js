@@ -5,6 +5,7 @@ export const namespaced = true
 
 export const state = () => ({
   user: null,
+  loggedIn: null,
 })
 
 export const mutations = {
@@ -20,7 +21,6 @@ export const mutations = {
     state.user = null
     localStorage.removeItem('user')
     this.$cookies.remove('user')
-    // window.$nuxt.$cookies.remove('user')
     location.reload()
   },
 }
@@ -31,10 +31,14 @@ export const actions = {
       .createUser(user)
       .then(({ data }) => {
         commit('SET_USER_DATA', data)
-        dispatch('notification/add', {
-          type: 'success',
-          message: 'User created successfully /nLogin to access your account',
-        })
+        dispatch(
+          'notification/add',
+          {
+            type: 'success',
+            message: 'User created successfully /nLogin to access your account',
+          },
+          { root: true }
+        )
       })
       .catch((error) => {
         dispatch(
@@ -48,10 +52,23 @@ export const actions = {
         throw error
       })
   },
-  loginUser({ commit }, credentials) {
-    return curiousServices.loginUser(credentials).then(({ data }) => {
-      commit('SET_USER_DATA', data)
-    })
+  loginUser({ commit, dispatch }, credentials) {
+    return curiousServices
+      .loginUser(credentials)
+      .then(({ data }) => {
+        commit('SET_USER_DATA', data)
+      })
+      .catch((error) => {
+        console.log('error', error)
+        dispatch(
+          'notification/add',
+          {
+            type: 'error',
+            message: 'Incorrect username or password',
+          },
+          { root: true }
+        )
+      })
   },
   logout({ commit }) {
     commit('CLEAR_USER_DATA')

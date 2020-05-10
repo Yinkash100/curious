@@ -19,6 +19,7 @@ export default {
       title: 'Curious + get smarter everyday',
     }
   },
+  validations: {},
 }
 </script>
 

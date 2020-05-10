@@ -1,36 +1,25 @@
 {
   "users": [
     {
-      "id": "95975486-bbff-4ee1-a992-c9a801ef04e3",
-      "firstName": "Adeyinka",
-      "lastName": "Adebiyi",
-      "username": "",
-      "email": "yinkash1000@gmail.com",
-      "password": "aaa",
-      "retypePassword": "aaa"
-    },
-    {
-      "id": "f942ce71-ef21-41b9-8ecd-5c2550310bf3",
-      "firstName": "antetokunpo",
-      "lastName": "Giannis",
-      "username": "",
-      "email": "yinkash1000@gmail.com",
-      "password": "$2a$10$FNgnKAB.4k/VEaxO/PHU0uw5KKCumLQzdX1PlR4TtHuaEwtBC1.1O"
-    },
-    {
-      "email": "adebiyiadeyinka41@yahoo.com",
-      "password": "$2a$10$XTuOZjWVCF3MPfjP6G8j.uLOIFmLFg.ExkxHMz2yEkVUi4TzJIWZi",
-      "id": "41ed4f57-0d4d-4e69-85db-736652902201",
-      "firstName": "Peju",
-      "lastName": "Omobolanle",
-      "username": ""
+      "email": "Hello@fron.other",
+      "password": "$2a$10$t3iBAF72nryCvqcn28k2GuFdoRvqr36hrQOiwXvjveaKn/zB.l6P.",
+      "id": "e8b115d1-6155-4551-8fd0-b4ab00782f5b",
+      "fullName": "Ajagbe Thomas",
+      "username": "yinkash100"
     },
     {
       "email": "yinkash1@gmail.com",
-      "password": "$2a$10$7TL1KYcOmtWF4c0spU8IVey8bqgHNQuAfMXmYQttw5hMuqKwYUjfW",
-      "id": "762089b9-c7b7-415d-a45d-f1dc1fc9dce0",
-      "firstName": "Omobaba",
-      "lastName": "419"
+      "password": "$2a$10$J2nHAqFfTSPjGe1HtFRutuNdp/W2gK3NzRTHVP29QMGcit1bqcpTy",
+      "id": "c541e4e6-9cb1-4293-a9ed-3e445ff0464b",
+      "fullName": "The Creator",
+      "username": "yinkash"
+    },
+    {
+      "email": "yinkash10@gmail.com",
+      "password": "$2a$10$Bh5fADXhMglQIM4Usl/LA.Tujxyua4R3n4nz3aqno/ZatGDcM2JvC",
+      "id": "d39716d7-f664-42ab-a06a-8ef915549137",
+      "fullName": "adeyinka riliwan",
+      "username": "yinkash"
     }
   ]
 }

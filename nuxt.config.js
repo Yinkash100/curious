@@ -34,10 +34,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-    { src: '~plugins/Vuelidate.js', ssr: false },
-    { src: '~plugins/auth.js' },
-  ],
+  plugins: [{ src: '~plugins/Vuelidate', mode: 'client', ssr: false }],
   /*
    ** Nuxt.js dev-modules
    */
@@ -49,7 +46,10 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ['cookie-universal-nuxt'],
+  modules: [
+    'cookie-universal-nuxt',
+    '@nuxtjs/auth'
+  ],
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
@@ -72,6 +72,22 @@ export default {
       },
     },
   },
+
+  axios: {
+    baseURL: 'http://localhost:3001',
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: 'login', method: 'post', propertyName: 'data.token' },
+          user: { url: 'me', method: 'get', propertyName: 'data' },
+          logout: false,
+        },
+      },
+    },
+  },
   /*
    ** Build configuration
    */
@@ -85,6 +101,6 @@ export default {
    ** Self definde for routers
    */
   router: {
-  //  middleware: 'requiresAuth',
+    middleware: ['auth'],
   },
 }

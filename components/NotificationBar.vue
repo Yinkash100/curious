@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center ma-2">
+  <div class="navbar text-center ma-2">
     <v-snackbar
       :value="notification.id"
       class="text-center text white black--text"
@@ -37,7 +37,7 @@ export default {
   mounted() {
     this.timeout = setTimeout(() => {
       this.$store.dispatch('notification/remove', this.notification)
-    }, 6000)
+    }, 5000)
   },
   beforeDestroy() {
     clearTimeout(this.timeout)
@@ -49,3 +49,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.navbar {
+  background: transparent;
+}
+</style>

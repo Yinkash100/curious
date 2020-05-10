@@ -1,59 +1,44 @@
 <template>
   <v-content class="signup">
-    <v-row>
-      <v-col :cols="8" :z-index="10" offset-md="2">
-        <v-card class="signup-card mx-auto" raised>
-          <v-row>
-            <v-col v-if="!showMainForm" :cols="6">
-              <v-card class="mx-4 pa-5 my-auto">
-                <v-card-text>
-                  <div class="signup-info">
-                    <p class="font-weight-black text-center">
-                      Want to see Verified Answers?<br />
-                      Get started with a free account!
-                    </p>
-                  </div>
-                  <v-card-actions class="justify-center">
-                    <v-btn
-                      :dark="true"
-                      class="ma-2 mx-auto"
-                      width="80%"
-                      rounded
-                      color="#3B5998"
-                      @click="audioNotification('success')"
-                    >
-                      Register with facebook
-                      <v-icon>mdi-facebook</v-icon>
-                    </v-btn>
-                  </v-card-actions>
-                  <v-card-actions class="justify-center">
-                    <v-btn
-                      :dark="true"
-                      class="ma-2 mx-auto"
-                      width="80%"
-                      rounded
-                      color="#DB4437"
-                      @click="audioNotification('error')"
-                    >
-                      Register with Google
-                      <v-icon>mdi-google-plus</v-icon>
-                    </v-btn>
-                  </v-card-actions>
-                  <v-divider class="ma-2" />
-                  <v-card-actions
-                    v-if="!emailRegistration"
-                    class="justify-center"
+    <v-card class="signup-card mx-auto" raised>
+      <v-row>
+        <v-col :cols="6" class="signup-info">
+          <div v-if="!showMainForm">
+            <v-card class="mx-4 my-auto">
+              <v-card-text>
+                <div class="signup-info">
+                  <p class="font-weight-black text-center">
+                    Want to see Verified Answers?<br />
+                    Get started with a free account!
+                  </p>
+                </div>
+                <v-card-actions class="justify-center">
+                  <v-btn :dark="true" width="80%" rounded color="#3B5998">
+                    Register with facebook
+                    <v-icon>mdi-facebook</v-icon>
+                  </v-btn>
+                </v-card-actions>
+                <v-card-actions class="justify-center">
+                  <v-btn :dark="true" width="80%" rounded color="#DB4437">
+                    Register with Google
+                    <v-icon>mdi-google-plus</v-icon>
+                  </v-btn>
+                </v-card-actions>
+                <v-divider class="ma-2" />
+                <v-card-actions
+                  v-if="!emailRegistration"
+                  class="justify-center"
+                >
+                  <v-btn
+                    width="80%"
+                    rounded
+                    color="primary"
+                    @click="showEmailField"
                   >
-                    <v-btn
-                      class="ma-2 mx-auto"
-                      width="80%"
-                      rounded
-                      color="primary"
-                      @click="showEmailField"
-                    >
-                      Register with Email
-                    </v-btn>
-                  </v-card-actions>
+                    Register with Email
+                  </v-btn>
+                </v-card-actions>
+                <v-expand-transition>
                   <v-card-text v-if="emailRegistration" class="justify-center">
                     <v-form @submit.prevent="openEmailRegistration">
                       <v-text-field
@@ -80,7 +65,7 @@
                         v-model="user.checkbox"
                         :value="user.checkbox.value"
                         label="By checking this box, you agree to our terms of
-                        service"
+                            service"
                         @blur="$v.user.checkbox.$touch()"
                       ></v-checkbox>
                       <template v-if="$v.user.checkbox.$error">
@@ -96,33 +81,35 @@
                       </v-btn>
                     </v-form>
                   </v-card-text>
-                  <p>
-                    Already have an account?
-                    <nuxt-link to="/login">Log in here</nuxt-link>
-                  </p>
-                </v-card-text>
-              </v-card>
-            </v-col>
-            <v-col v-else>
-              <v-card height="500px" class="mx-4">
-                <SignupForm :email="user.email" />
-              </v-card>
-            </v-col>
-            <v-divider vertical />
-            <v-col :cols="5" class="my-5 mx-4">
-              <Logo class="text-xs-center" />
-              <h2 class="text-uppercase mb-2">
-                Join us and lets start sharing knowledge
-              </h2>
-              <p>
-                By having a Curious account, you can join, vote, and comment on
-                all your favorite Curious content.
-              </p>
-            </v-col>
-          </v-row>
-        </v-card>
-      </v-col>
-    </v-row>
+                </v-expand-transition>
+                <p>
+                  Already have an account?
+                  <nuxt-link to="/login">Log in here</nuxt-link>
+                </p>
+              </v-card-text>
+            </v-card>
+          </div>
+          <div v-else>
+            <v-card class="mx-4">
+              <SignupForm :email="user.email" @closeMainForm="closeMainForm" />
+            </v-card>
+          </div>
+        </v-col>
+        <v-divider vertical />
+        <v-col :cols="5" class="my-5 mx-4 d-none d-md-flex">
+          <div>
+            <Logo class="text-xs-center" />
+            <h2 class="text-uppercase mb-2">
+              Join us and lets start sharing knowledge
+            </h2>
+            <p>
+              By having a Curious account, you can join, vote, and comment on
+              all your favorite Curious content.
+            </p>
+          </div>
+        </v-col>
+      </v-row>
+    </v-card>
   </v-content>
 </template>
 
@@ -133,7 +120,7 @@ import SignupForm from '@/components/SignupForm'
 
 export default {
   name: 'Signup',
-  meta: { requiresAuth: false },
+  auth: false,
   components: {
     Logo,
     SignupForm,
@@ -145,9 +132,6 @@ export default {
       user: {
         email: '',
         checkbox: '',
-      },
-      errorMessage: {
-        email: '',
       },
     }
   },
@@ -164,6 +148,9 @@ export default {
     showEmailField() {
       this.emailRegistration = true
     },
+    closeMainForm() {
+      this.showMainForm = false
+    },
     openEmailRegistration() {
       this.$v.$touch()
       if (this.$v.$invalid) {
@@ -179,26 +166,19 @@ export default {
         this.showMainForm = true
       }
     },
-    audioNotification(type) {
-      const notification = {
-        type,
-        message: 'Your event has been created',
-      }
-      this.$store.dispatch('notification/add', notification, { root: true })
-    },
-    formErrors() {
-      let email = ''
-      if (!this.$v.user.email.required) {
-        email = 'Email is required'
-      } else if (!this.$v.user.email.email) {
-        email = 'Please enter a valid email'
-      } else {
-        email = ''
-      }
-      return email
-    },
   },
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.signup-card {
+  max-width: 820px;
+  margin: auto;
+}
+
+.signup-info {
+  max-width: 410px;
+  min-width: 360px;
+  margin: auto;
+}
+</style>

@@ -47,7 +47,8 @@
 <script>
 import SubjectCategory from '../components/SubjectCategory'
 export default {
-  meta: { requiresAuth: false },
+  auth: false,
+  // meta: { requiresAuth: false },
   components: {
     SubjectCategory,
   },
