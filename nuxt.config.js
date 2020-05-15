@@ -1,5 +1,13 @@
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+
 export default {
   mode: 'universal',
+  /*
+   ** Self defined for routers
+   */
+  router: {
+    // middleware: ['auth'],
+  },
   /*
    ** Headers of the page
    */
@@ -21,6 +29,11 @@ export default {
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css2?family=Roboto&display=swap',
       },
+      {
+        rel: 'stylesheet',
+        href:
+          'https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap',
+      },
     ],
   },
   /*
@@ -30,46 +43,52 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: [
+    '@/assets/scss/main.scss',
+    { src: '~assets/scss/pages/_index.scss', lang: 'scss' },
+  ],
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: '~plugins/Vuelidate', mode: 'client', ssr: false }],
+  plugins: [
+    { src: '@/plugins/Vuelidate', mode: 'client', ssr: false },
+    '@/plugins/GlobalComponents',
+  ],
   /*
    ** Nuxt.js dev-modules
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
-    '@nuxtjs/vuetify',
   ],
   /*
    ** Nuxt.js modules
    */
   modules: [
     'cookie-universal-nuxt',
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+    '@nuxtjs/style-resources',
+    '@nuxtjs/fontawesome',
+    // 'nuxt-fontawesome',
   ],
-  /*
-   ** vuetify module configuration
-   ** https://github.com/nuxt-community/vuetify-module
-   */
-  vuetify: {
-    customVariables: ['~/assets/_variables.scss'],
-    treeShake: true,
-    theme: {
-      dark: false,
-      themes: {
-        dark: {
-          primary: '#293D6E',
-          accent: '#999BBE',
-          secondary: '#e0ecff',
-          info: '#008080',
-          warning: '#f0ad4e',
-          error: '#d9534f',
-          success: '#5cb85c',
-        },
-      },
+  styleResources: {
+    scss: ['@/assets/scss/main.scss'],
+  },
+
+  fontawesome: {
+    icons: {
+      solid: [
+        'faUserCircle',
+        'faEye',
+        'faEyeSlash',
+        'faEyeDropper',
+        'faAngleRight',
+        'faAngleLeft',
+        'faSearch',
+        'faWindowClose',
+        'faCheckCircle',
+      ],
+      brands: ['faFacebook', 'faGoogle',],
     },
   },
 
@@ -81,8 +100,8 @@ export default {
     strategies: {
       local: {
         endpoints: {
-          login: { url: 'login', method: 'post', propertyName: 'data.token' },
-          user: { url: 'me', method: 'get', propertyName: 'data' },
+          login: false,
+          user: false,
           logout: false,
         },
       },
@@ -96,11 +115,5 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {},
-  },
-  /*
-   ** Self definde for routers
-   */
-  router: {
-    middleware: ['auth'],
   },
 }

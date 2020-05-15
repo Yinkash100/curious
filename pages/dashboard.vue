@@ -7,7 +7,7 @@
 <script>
 export default {
   name: 'DashboardVue',
-  auth: true,
+  components: {},
   data() {
     return {}
   },

@@ -10,7 +10,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import NotificationBar from '@/components/NotificationBar'
+import NotificationBar from '@/components/Notification/NotificationBar'
 
 export default {
   name: 'NotificationContainer',
@@ -21,12 +21,20 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .notification-container {
   position: fixed;
-  bottom: 0;
-  right: 0;
-  padding-right: 40px;
+  bottom: 3rem;
+  left: 45%;
+  transform: translateX(-45%);
+  text-align: left;
   background: transparent;
+  color: #000;
+  width: 90%;
+  margin: auto;
+
+  @include respond(tab-port) {
+    max-width: 500px;
+  }
 }
 </style>

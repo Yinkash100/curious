@@ -1,32 +1,48 @@
 <template>
-  <v-app>
+  <div>
     <Nav />
     <nuxt />
     <NotificationContainer />
-  </v-app>
+  </div>
 </template>
 
 <script>
-import NotificationContainer from '../components/NotificationContainer'
-import Nav from '../components/Nav'
+import axios from 'axios'
+import NotificationContainer from '../components/Notification/NotificationContainer'
+import Nav from '../components/Navigation/Nav'
+
 export default {
-  components: { Nav, NotificationContainer },
+  components: {
+    Nav,
+    NotificationContainer,
+  },
   data() {
     return {}
+  },
+  created() {
+    const userString = this.$cookies.get('user')
+    if (this.$cookies.get('user')) {
+      this.$store.commit('users/SET_USER_DATA', userString)
+    }
+    axios.interceptors.response.use(
+      (response) => response,
+      (error) => {
+        if (error.response.status === '401') {
+          this.$store.dispatch('logout')
+        }
+        return Promise.reject(error)
+      }
+    )
   },
   head() {
     return {
       title: 'Curious + get smarter everyday',
     }
   },
-  validations: {},
 }
 </script>
 
-<style lang="scss">
-@import '../assets/variables';
-@import '../assets/scss/main';
-
+<style lang="scss" scoped>
 .errorMessage {
   color: red;
   font-size: 0.75rem;

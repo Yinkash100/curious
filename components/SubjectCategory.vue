@@ -1,27 +1,9 @@
 <template>
-  <div>
-    <v-sheet color="secondary">
-      <v-slide-group multiple show-arrows>
-        <v-slide-item
-          v-for="(subject, key) in subjects"
-          :key="key"
-          v-slot:default="{ active, toggle }"
-        >
-          <v-btn
-            class="mx-2"
-            :input-value="active"
-            active-class="purple white--text"
-            color="secondary"
-            depressed
-            rounded
-            @click="toggle"
-          >
-            <v-icon>{{ subject.icon }}</v-icon>
-            {{ ' ' + subject.name }}
-          </v-btn>
-        </v-slide-item>
-      </v-slide-group>
-    </v-sheet>
+  <div class="subject-category">
+    <div v-for="(subject, key) in subjects" :key="key" class="each-subject">
+      <img :src="`svgIcons/${subject.name}.svg`" class="subject-icon" />
+      {{ subject.name }}
+    </div>
   </div>
 </template>
 
@@ -33,87 +15,70 @@ export default {
       subjects: [
         {
           name: 'all',
-          icon: 'mdi-shield-star-outline',
           url: '',
         },
         {
           name: 'mathematics',
-          icon: 'mdi-pi',
           url: '',
         },
         {
           name: 'chemistry',
-          icon: 'mdi-flask',
           url: '',
         },
         {
           name: 'history',
-          icon: 'mdi-book-open',
           url: '',
         },
         {
           name: 'english',
-          icon: 'mdi-message-text',
           url: '',
         },
         {
           name: 'biology',
-          icon: 'mdi-flask',
           url: '',
         },
         {
           name: 'physics',
-          icon: 'mdi-transmission-tower',
           url: '',
         },
         {
           name: 'social_studies',
-          icon: 'mdi-account-group',
           url: '',
         },
         {
           name: 'agriculture',
-          icon: 'mdi-sprout-outline',
           url: '',
         },
         {
           name: 'arts',
-          icon: 'mdi-brush',
           url: '',
         },
         {
           name: 'geography',
-          icon: 'mdi-earth',
           url: '',
         },
         {
           name: 'business',
-          icon: 'mdi-handshake',
           url: '',
         },
         {
           name: 'computers',
-          icon: 'mdi-desktop-classic',
           url: '',
         },
         {
           name: 'french',
-          icon: 'mdi-message-text',
           url: '',
         },
         {
           name: 'spanish',
-          icon: 'mdi-message-text',
           url: '',
         },
         {
           name: 'medicine',
-          icon: 'mdi-doctor',
           url: '',
         },
         {
           name: 'law',
-          icon: 'mdi-scale-balance',
           url: '',
         },
         {
@@ -127,4 +92,21 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.subject-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.each-subject {
+  font-size: 2rem;
+  line-height: 3rem;
+  display: inline-block;
+  padding: 1rem, 2rem;
+}
+
+.subject-category {
+  display: block;
+  height: 4rem;
+}
+</style>

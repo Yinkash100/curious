@@ -1,0 +1,33 @@
+ /* Ref: https://github.com/nuxt-community/vuetify-module#customvariables
+
+ The variables you want to modify
+ $font-size-root: 20px;
+
+  */
+
+ /* =================== VARIABES =============== */
+$default-font-size: 12px;
+
+ //========= COLORS =========//
+ $color-primary: #2F2FA2;
+ $color-primary-light: rgb(74, 114, 204);
+ $color-primary-dark: #242582;
+
+ $color-grey-light: rgb(188, 205, 206);
+ $color-grey-dark: rgba(200, 198, 186, 0.58);
+
+ $color-background-default: #D9EFFD;
+
+ $color-black: #000;
+ $color-white: #fff;
+
+ $color-warning: red;
+ $color-success: #00a800;
+
+ //==================Grid=================//
+ $grid-width: 114rem;
+ $gutter-horizontal: 4rem;
+ $gutter-vertical: 3rem;
+
+
+

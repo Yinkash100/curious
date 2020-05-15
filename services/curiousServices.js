@@ -23,7 +23,7 @@ export default {
     return bcrypt.hashSync(password, saltRounds)
   },
 
-  loginUser(credentials) {
-    return apiClient.post('/login', credentials)
+  loginUser(token) {
+    return apiClient.post('/login', token)
   },
 }

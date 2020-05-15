@@ -1,126 +1,129 @@
 <template>
-  <v-content class="signup">
-    <v-card class="signup-card mx-auto" raised>
-      <v-row>
-        <v-col :cols="6" class="signup-info">
-          <div v-if="!showMainForm">
-            <v-card class="mx-4 my-auto">
-              <v-card-text>
-                <div class="signup-info">
-                  <p class="font-weight-black text-center">
-                    Want to see Verified Answers?<br />
-                    Get started with a free account!
-                  </p>
-                </div>
-                <v-card-actions class="justify-center">
-                  <v-btn :dark="true" width="80%" rounded color="#3B5998">
-                    Register with facebook
-                    <v-icon>mdi-facebook</v-icon>
-                  </v-btn>
-                </v-card-actions>
-                <v-card-actions class="justify-center">
-                  <v-btn :dark="true" width="80%" rounded color="#DB4437">
-                    Register with Google
-                    <v-icon>mdi-google-plus</v-icon>
-                  </v-btn>
-                </v-card-actions>
-                <v-divider class="ma-2" />
-                <v-card-actions
-                  v-if="!emailRegistration"
-                  class="justify-center"
-                >
-                  <v-btn
-                    width="80%"
-                    rounded
-                    color="primary"
-                    @click="showEmailField"
-                  >
-                    Register with Email
-                  </v-btn>
-                </v-card-actions>
-                <v-expand-transition>
-                  <v-card-text v-if="emailRegistration" class="justify-center">
-                    <v-form @submit.prevent="openEmailRegistration">
-                      <v-text-field
-                        v-model="user.email"
-                        label="Email Address"
-                        class="ma-0 pa-0"
-                        loader-height="1"
-                        required
-                        outlined
-                        dense
-                        @blur="$v.user.email.$touch()"
-                      >
-                        <v-icon primary>mdi-email</v-icon>
-                      </v-text-field>
-                      <template v-if="$v.user.email.$error">
-                        <p v-if="!$v.user.email.required" class="errorMessage">
-                          Email is required
-                        </p>
-                        <p v-if="!$v.user.email.email" class="errorMessage">
-                          Please Enter a valid email
-                        </p>
-                      </template>
-                      <v-checkbox
-                        v-model="user.checkbox"
-                        :value="user.checkbox.value"
-                        label="By checking this box, you agree to our terms of
-                            service"
-                        @blur="$v.user.checkbox.$touch()"
-                      ></v-checkbox>
-                      <template v-if="$v.user.checkbox.$error">
-                        <p v-if="!$v.user.checkbox.sameAs" class="errorMessage">
-                          Please Agree to our
-                          <nuxt-link to="/termsAndConditions">
-                            terms of service
-                          </nuxt-link>
-                        </p>
-                      </template>
-                      <v-btn class="mr-4" type="submit" color="primary">
-                        Next <v-icon>mdi-chevron-right</v-icon>
-                      </v-btn>
-                    </v-form>
-                  </v-card-text>
-                </v-expand-transition>
-                <p>
-                  Already have an account?
-                  <nuxt-link to="/login">Log in here</nuxt-link>
-                </p>
-              </v-card-text>
-            </v-card>
-          </div>
-          <div v-else>
-            <v-card class="mx-4">
-              <SignupForm :email="user.email" @closeMainForm="closeMainForm" />
-            </v-card>
-          </div>
-        </v-col>
-        <v-divider vertical />
-        <v-col :cols="5" class="my-5 mx-4 d-none d-md-flex">
-          <div>
-            <Logo class="text-xs-center" />
-            <h2 class="text-uppercase mb-2">
-              Join us and lets start sharing knowledge
-            </h2>
-            <p>
-              By having a Curious account, you can join, vote, and comment on
-              all your favorite Curious content.
+  <div class="signup-card">
+    <div class="signup-main u-center-text">
+      <div v-if="!showMainForm">
+        <div class="signup-info card card--small">
+          <div class="u-margin-bottom-small u-margin-top-small">
+            <p class="signup-info--text">
+              Want to see Verified Answers?<br />
+              Get started with a free account!
             </p>
           </div>
-        </v-col>
-      </v-row>
-    </v-card>
-  </v-content>
+          <div class="u-margin-bottom-small">
+            <button
+              class="signup-info--btn btn facebook-signup"
+              @click="audioNotification('error')"
+            >
+              Register with facebook
+              <font-awesome-icon :icon="['fab', 'facebook']" />
+            </button>
+          </div>
+          <div class="u-margin-bottom-small">
+            <button
+              class="signup-info--btn btn google-signup"
+              @click="audioNotification('error')"
+            >
+              Register with Google
+              <font-awesome-icon icon="['fab', 'google']" />
+            </button>
+          </div>
+          <hr />
+          <div
+            v-if="!emailRegistration"
+            class="u-margin-bottom-small u-margin-top-small"
+          >
+            <button class="signup-info--btn btn" @click="showEmailField">
+              Register with Email
+            </button>
+          </div>
+          <div>
+            <div v-if="emailRegistration" class="justify-center">
+              <form class="form" @submit.prevent="openEmailRegistration">
+                <div class="form__group">
+                  <label for="email" class="email-label form__label"
+                    >Email</label
+                  >
+                  <input
+                    id="email"
+                    v-model="user.email"
+                    type="email"
+                    class="form__input email-input"
+                    placeholder="Email Address"
+                    @blur="$v.user.email.$touch()"
+                  />
+                  <template v-if="$v.user.email.$error">
+                    <p v-if="!$v.user.email.required" class="errorMessage">
+                      Email is required
+                    </p>
+                    <p v-if="!$v.user.email.email" class="errorMessage">
+                      Please Enter a valid email
+                    </p>
+                  </template>
+                </div>
+                <div class="form__group u-margin-bottom-small">
+                  <div class="form__checkbox-group">
+                    <input
+                      id="terms"
+                      v-model="user.checkbox"
+                      type="checkbox"
+                      class="form__checkbox-input"
+                      value="user.checkbox.value"
+                      @blur="$v.user.checkbox.$touch()"
+                    />
+                    <label class="form__checkbox-label" for="terms">
+                      <span class="form__checkbox-checkmark" />
+                      By checking this box, you agree to our
+                      <nuxt-link to="/termsAndConditions">
+                        terms of service
+                      </nuxt-link>
+                    </label>
+                  </div>
+                  <template v-if="$v.user.checkbox.$error">
+                    <p v-if="!$v.user.checkbox.sameAs" class="errorMessage">
+                      Please Agree to our terms of service
+                    </p>
+                  </template>
+                </div>
+                <button class="btn btn--primary u-margin-bottom-small">
+                  Next <font-awesome-icon icon="angle-right" />
+                </button>
+              </form>
+            </div>
+          </div>
+          <p class="u-margin-bottom-medium">
+            Already have an account?
+            <nuxt-link to="/login">Log in here</nuxt-link>
+          </p>
+        </div>
+      </div>
+      <div v-else>
+        <div class="card">
+          <SignupForm :email="user.email" @closeMainForm="closeMainForm" />
+        </div>
+      </div>
+    </div>
+    <div class="additional-info u-margin-top-small">
+      <Logo class="u-center-text" />
+      <h2 class="text-uppercase">
+        Join us and lets start sharing knowledge
+      </h2>
+      <p>
+        By having a Curious account, you can join, vote, and comment on all your
+        favorite Curious content.
+      </p>
+    </div>
+  </div>
 </template>
 
 <script>
 import { required, email, sameAs } from 'vuelidate/lib/validators'
-import Logo from '@/components/Logo'
-import SignupForm from '@/components/SignupForm'
+import Logo from '@/components/Logos/Logo'
+import SignupForm from '@/components/Forms/SignupForm'
 
 export default {
-  name: 'Signup',
   auth: false,
+  name: 'Signup',
+  // meta: { requiresAuth: false },
   components: {
     Logo,
     SignupForm,
@@ -135,6 +138,11 @@ export default {
       },
     }
   },
+  beforeCreate() {
+    if (this.$cookies.get('user')) {
+      this.$router.push({ name: 'dashboard' })
+    }
+  },
   validations: {
     user: {
       checkbox: {
@@ -143,8 +151,14 @@ export default {
       email: { required, email },
     },
   },
-  created() {},
   methods: {
+    audioNotification(type) {
+      this.$store.dispatch('notification/add', {
+        type,
+        message:
+          'This feature is yet to be implemented by those of us that can implement it',
+      })
+    },
     showEmailField() {
       this.emailRegistration = true
     },
@@ -170,15 +184,69 @@ export default {
 }
 </script>
 
-<style scoped>
-.signup-card {
-  max-width: 820px;
-  margin: auto;
+<style scoped lang="scss">
+.signup {
+  &-card {
+    max-width: 820px;
+    margin: auto;
+    padding: 0.5rem;
+
+    @include respond(tab-land) {
+      display: flex;
+      padding: 1.5rem 1.5rem;
+    }
+  }
+
+  &-main {
+    padding: 3rem 1rem;
+  }
+
+  &-info {
+    &--btn {
+      color: $color-white;
+      width: 80%;
+      border-radius: 10rem;
+      padding: 0.5rem;
+    }
+  }
+}
+.additional-info {
+  display: none;
+
+  @include respond(tab-land) {
+    display: block;
+    width: 40%;
+    max-width: 300px;
+    margin-left: 2rem;
+    padding-left: 2rem;
+    border-left: 1px solid $color-grey-dark;
+  }
+}
+.signup-info--button {
+}
+.facebook-signup {
+  background-color: #3b5998;
 }
 
-.signup-info {
-  max-width: 410px;
-  min-width: 360px;
-  margin: auto;
+.google-signup {
+  background-color: #db4437;
+  margin-bottom: 1rem;
+}
+
+.email {
+  &-signup {
+    background: $color-primary;
+  }
+  &-input {
+    width: 70%;
+    margin: auto;
+    border-radius: 0.5rem;
+  }
+  &-label {
+    font-size: 0.8rem;
+  }
+}
+.checkbox-input {
+  display: none;
 }
 </style>

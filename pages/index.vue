@@ -1,36 +1,26 @@
 <template>
-  <div class="mt-10">
-    <v-row class="wall">
-      <v-col cols="12" md="6" class="ma-10">
-        <h1 class="display-3 font-weight-black mt-10">
+  <div class="container">
+    <div class="wall">
+      <div class="wall-items">
+        <h1 class="wall-head u-margin-bottom-small">
           Go from questioning to understanding
         </h1>
-        <p class="title text-justify py-4">
+        <p class="wall-text u-margin-bottom-small">
           Curious is the knowledge sharing community where over 10 million
           students and experts put their heads together to crack their toughest
           homework questions.
         </p>
-        <form>
-          <v-text-field
-            v-model="searchItem"
-            :append-icon="'mdi-magnify'"
-            placeholder="What is your question?"
-            solo
-            rounded
-          />
-        </form>
-      </v-col>
-    </v-row>
-    <v-row class="categories">
-      <v-col cols="12" md="12">
-        <SubjectCategory />
-      </v-col>
-    </v-row>
-    <v-row>
+        <BaseSearchBar :inputStyle="inputStyle" class="wall-search" />
+      </div>
+    </div>
+    <div class="categories">
+      <SubjectCategory />
+    </div>
+    <div>
       <p>Ruled by students, supported by parents, endorsed by teachers.</p>
-    </v-row>
-    <v-row>
-      <v-col>
+    </div>
+    <div>
+      <div>
         <div>
           <h2>What do you need to know?</h2>
           <p>
@@ -39,40 +29,54 @@
             small from Curious
           </p>
         </div>
-      </v-col>
-    </v-row>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import SubjectCategory from '../components/SubjectCategory'
+
 export default {
   auth: false,
-  // meta: { requiresAuth: false },
   components: {
     SubjectCategory,
   },
   data() {
     return {
-      searchItem: '',
+      inputStyle: 'indexPageStyle',
     }
   },
 }
 </script>
 
-<style lang="scss">
-@import '../assets/variables';
+<style lang="scss" scoped>
+@import '../assets/scss/pages/index';
 .wall {
-  height: 80vh;
-  background-image: linear-gradient(
-      to right bottom,
-      rgba($color-primary-light, 0.3),
-      rgba($color-primary, 0.6)
-    ),
-    url('/assets/images/writing-materials.jpg');
-  background-size: cover;
-  background-position: top;
-  position: relative;
+  padding: 5rem 0.75rem 0 1.2rem;
+
+  &-items {
+    @include respond(tab-port) {
+      width: 60%;
+    }
+    @include respond(tab-land) {
+      width: 50%;
+    }
+  }
+  &-head {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+
+  &-search {
+    @include respond(tab-land) {
+    }
+
+    &-text {
+      font-size: 1.5rem;
+    }
+  }
 }
 .categories {
   height: 20vh;

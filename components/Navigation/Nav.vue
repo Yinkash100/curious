@@ -1,0 +1,94 @@
+<template>
+  <div class="container">
+    <div class="nav" :class="navBackgroundColor">
+      <nuxt-link to="/" class="nav-logo-small"><LogoSmall /></nuxt-link>
+      <nuxt-link to="/" class="nav-logo"><Logo /></nuxt-link>
+      <template class="nav-main-links" v-if="loggedIn">
+        <NavMain />
+      </template>
+      <template class="nav-be4-links" v-else>
+        <NavBeforeLogin />
+      </template>
+    </div>
+  </div>
+</template>
+<script>
+import { mapGetters } from 'vuex'
+import Logo from '@/components/Logos/Logo'
+import LogoSmall from '@/components/Logos/LogoSmall'
+import NavBeforeLogin from '@/components/Navigation/NavBeforeLogin'
+import NavMain from '@/components/Navigation/NavMain'
+
+export default {
+  components: { NavBeforeLogin, NavMain, LogoSmall, Logo },
+  props: {
+    navBackgroundColor: {
+      type: String,
+      required: false,
+    },
+  },
+  data() {
+    return {}
+  },
+  computed: {
+    ...mapGetters({ loggedIn: 'users/loggedIn' }),
+  },
+  // created() {
+  //   console.log('loggedIn', loggedIn)
+  // },
+  methods: {},
+}
+</script>
+
+<style scoped lang="scss">
+/*@import 'assets/variables';*/
+.container {
+  display: block;
+  box-shadow: 0.5rem 0 0.5rem $color-grey-dark;
+}
+.nav {
+  width: 100%;
+  display: flex;
+  height: 3rem;
+  padding: 0.5rem 0;
+
+  &-logo {
+    display: none;
+    @include respond(tab-port) {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+    }
+  }
+
+  &-main-links {
+    display: flex;
+    align-items: center;
+  }
+
+  &-be4-links {
+    display: flex;
+    height: 100%;
+    padding: 1rem 0 1rem;
+    align-content: center;
+    justify-content: flex-end;
+  }
+
+  &-logo-small {
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    float: left;
+    @include respond(tab-port) {
+      display: none;
+    }
+  }
+}
+
+.index-bg {
+  background: $color-background-default;
+}
+
+.nav-links-left {
+}
+</style>

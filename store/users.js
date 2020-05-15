@@ -5,22 +5,22 @@ export const namespaced = true
 
 export const state = () => ({
   user: null,
-  loggedIn: null,
 })
 
 export const mutations = {
   SET_USER_DATA(state, userData) {
+    userData = JSON.stringify(userData)
     state.user = userData
-    localStorage.setItem('user', JSON.stringify(userData))
-    this.$cookies.set('user', JSON.stringify(userData), {
+    this.$auth.setUser(userData)
+    // this.$auth.setToken(userData.accessToken)
+    this.$cookies.set('user', userData, {
       path: '/',
     })
     axios.defaults.headers.common.Authorization = `Bearer ${userData.token}`
   },
   CLEAR_USER_DATA(state) {
-    state.user = null
-    localStorage.removeItem('user')
     this.$cookies.remove('user')
+    state.user = null
     location.reload()
   },
 }
@@ -71,6 +71,7 @@ export const actions = {
       })
   },
   logout({ commit }) {
+    this.$auth.logout()
     commit('CLEAR_USER_DATA')
   },
 }
