@@ -24,7 +24,7 @@
               @click="audioNotification('error')"
             >
               Register with Google
-              <font-awesome-icon icon="['fab', 'google']" />
+              <font-awesome-icon :icon="['fab', 'google']" />
             </button>
           </div>
           <hr />
@@ -128,6 +128,11 @@ export default {
     Logo,
     SignupForm,
   },
+  head() {
+    return {
+      title: 'Signup',
+    }
+  },
   data() {
     return {
       emailRegistration: false,
@@ -189,7 +194,7 @@ export default {
   &-card {
     max-width: 820px;
     margin: auto;
-    padding: 0.5rem;
+    padding: 3rem 0.5rem;
 
     @include respond(tab-land) {
       display: flex;

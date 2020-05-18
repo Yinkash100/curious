@@ -1,12 +1,12 @@
 <template>
-  <div class="container">
-    <div class="nav" :class="navBackgroundColor">
+  <div class="container" :class="parentDefinedStyle">
+    <div class="nav">
       <nuxt-link to="/" class="nav-logo-small"><LogoSmall /></nuxt-link>
       <nuxt-link to="/" class="nav-logo"><Logo /></nuxt-link>
-      <template class="nav-main-links" v-if="loggedIn">
+      <template v-if="loggedIn" class="nav-main-links">
         <NavMain />
       </template>
-      <template class="nav-be4-links" v-else>
+      <template v-else class="nav-be4-links">
         <NavBeforeLogin />
       </template>
     </div>
@@ -22,16 +22,19 @@ import NavMain from '@/components/Navigation/NavMain'
 export default {
   components: { NavBeforeLogin, NavMain, LogoSmall, Logo },
   props: {
-    navBackgroundColor: {
-      type: String,
-      required: false,
-    },
+    // parentDefinedStyle: {
+    //   type: String,
+    //   required: false,
+    // },
   },
   data() {
     return {}
   },
   computed: {
-    ...mapGetters({ loggedIn: 'users/loggedIn' }),
+    ...mapGetters({
+      loggedIn: 'users/loggedIn',
+      parentDefinedStyle: 'nav/parentDefinedStyle',
+    }),
   },
   // created() {
   //   console.log('loggedIn', loggedIn)
@@ -43,14 +46,21 @@ export default {
 <style scoped lang="scss">
 /*@import 'assets/variables';*/
 .container {
+  width: 100%;
   display: block;
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  min-height: 4rem;
+  background: $color-white;
   box-shadow: 0.5rem 0 0.5rem $color-grey-dark;
 }
 .nav {
   width: 100%;
   display: flex;
   height: 3rem;
-  padding: 0.5rem 0;
+  padding-top: 1rem;
 
   &-logo {
     display: none;
@@ -85,8 +95,13 @@ export default {
   }
 }
 
-.index-bg {
+.indexPageStyleScrolled {
   background: $color-background-default;
+  box-shadow: none;
+  border: none;
+}
+.indexPageStyle {
+  background: $color-white;
 }
 
 .nav-links-left {

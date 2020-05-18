@@ -19,9 +19,8 @@ export const mutations = {
     axios.defaults.headers.common.Authorization = `Bearer ${userData.token}`
   },
   CLEAR_USER_DATA(state) {
-    this.$cookies.remove('user')
     state.user = null
-    location.reload()
+    this.$cookies.remove('user')
   },
 }
 
@@ -71,8 +70,10 @@ export const actions = {
       })
   },
   logout({ commit }) {
-    this.$auth.logout()
     commit('CLEAR_USER_DATA')
+    this.$auth.logout().then(() => {
+      location.reload()
+    })
   },
 }
 

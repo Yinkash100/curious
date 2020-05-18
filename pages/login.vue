@@ -2,7 +2,9 @@
   <div class="container">
     <div class="login card card--small">
       <form v-if="$v" class="" @submit.prevent="loginUser">
-        <div class="login-title u-center-text u-margin-bottom-small">
+        <div
+          class="login-title u-center-text u-margin-bottom-small u-margin-top-small"
+        >
           <h2 class="">Login</h2>
         </div>
         <div>
@@ -89,6 +91,11 @@ import { required, email } from 'vuelidate/lib/validators'
 export default {
   auth: false,
   name: 'Login',
+  head() {
+    return {
+      title: 'Login',
+    }
+  },
   data() {
     return {
       showPassword: false,
@@ -153,7 +160,7 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  padding: 2rem 1rem;
+  padding: 8rem 1rem;
 }
 .login {
   color: $color-black;

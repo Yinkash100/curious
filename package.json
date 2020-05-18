@@ -13,6 +13,7 @@
     "compile:sass": "node-sass assets/scss/main.scss tyle.css -w"
   },
   "dependencies": {
+    "@fortawesome/free-regular-svg-icons": "^5.13.0",
     "@nuxtjs/auth": "^4.9.1",
     "@nuxtjs/axios": "^5.10.3",
     "aws-sdk": "^2.668.0",

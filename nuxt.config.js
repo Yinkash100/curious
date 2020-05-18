@@ -1,12 +1,10 @@
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
-
 export default {
   mode: 'universal',
   /*
    ** Self defined for routers
    */
   router: {
-    // middleware: ['auth'],
+    middleware: ['auth'],
   },
   /*
    ** Headers of the page
@@ -45,7 +43,6 @@ export default {
    */
   css: [
     '@/assets/scss/main.scss',
-    { src: '~assets/scss/pages/_index.scss', lang: 'scss' },
   ],
   /*
    ** Plugins to load before mounting the App
@@ -87,8 +84,15 @@ export default {
         'faSearch',
         'faWindowClose',
         'faCheckCircle',
+        'faStar',
+        'faStarHalf',
+        'faCertificate',
+        'faAngleDown',
+        'faChevronCircleLeft',
+        'faChevronCircleRight',
       ],
-      brands: ['faFacebook', 'faGoogle',],
+      brands: ['faFacebook', 'faGoogle', 'faYoutube'],
+      regular: ['faTimesCircle'],
     },
   },
 

@@ -4,7 +4,7 @@
       <p class="notification-text">
         {{ notification.message }}
         <font-awesome-icon
-          icon="window-close"
+          :icon="['far', 'times-circle']"
           class="notification-icon"
           @click="removeNotification"
         />

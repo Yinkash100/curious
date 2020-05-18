@@ -17,7 +17,7 @@
 
   //tablets in  landscape mode
   @if $breakpoint == tab-land {
-    @media(min-width: 900px) { @content };
+    @media(min-width: 765px) { @content };
   }
 
   //Normal sized desktops

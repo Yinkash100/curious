@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <!--    <Nav :parentDefinedStyle="dynamicStyle" />-->
     <div class="wall">
       <div class="wall-items">
         <h1 class="wall-head u-margin-bottom-small">
@@ -10,50 +11,169 @@
           students and experts put their heads together to crack their toughest
           homework questions.
         </p>
-        <BaseSearchBar :inputStyle="inputStyle" class="wall-search" />
+        <BaseSearchBar :input-style="inputStyle" class="wall-search" />
       </div>
     </div>
-    <div class="categories">
+    <div class="subject-categories">
       <SubjectCategory />
     </div>
-    <div>
-      <p>Ruled by students, supported by parents, endorsed by teachers.</p>
+    <div class="review">
+      <div class="review__head">
+        <h3 class="">
+          Ruled by students, supported by parents, endorsed by teachers.
+        </h3>
+      </div>
+      <div class="review__testimonial">
+        <Testimonials />
+      </div>
+      <div class="review__body u-margin-top-small">
+        <div class="review__body-point">
+          <h3>4.6</h3>
+        </div>
+        <div class="review__body-star">
+          <font-awesome-icon icon="star" class="review__body-star-icon fa-2x" />
+          <font-awesome-icon icon="star" class="review__body-star-icon fa-2x" />
+          <font-awesome-icon icon="star" class="review__body-star-icon fa-2x" />
+          <font-awesome-icon icon="star" class="review__body-star-icon fa-2x" />
+          <font-awesome-icon
+            icon="star-half"
+            class="review__body-star-icon fa-2x"
+          />
+        </div>
+        <div class="review__body-text">
+          <p>review from Google Play</p>
+        </div>
+      </div>
     </div>
-    <div>
-      <div>
-        <div>
-          <h2>What do you need to know?</h2>
+    <section class="content">
+      <div class="certified">
+        <div class="certified-icon">
+          <font-awesome-icon class="fa-3x" icon="certificate" />
+        </div>
+        <div class="certified-text">
+          <p>Tap into the brainpower of thousands of experts worldwide</p>
+        </div>
+      </div>
+      <div class="boast u-center-text">
+        <div class="boast-head u-margin-bottom-minute">
+          <h3>Ask questions</h3>
+        </div>
+        <div class="boast-body">
+          <p>
+            Whether you’re stuck on a history question or a blocked by a
+            geometry puzzle, there’s no question too tricky for Brainly.
+          </p>
+        </div>
+      </div>
+
+      <div class="boast u-center-text">
+        <div class="boast-head u-margin-bottom-minute">
+          <h3>Go beyond</h3>
+        </div>
+        <div class="boast-body">
+          <p>
+            The Curious community is constantly buzzing with the excitement of
+            endless collaboration, proving that learning is more fun — and more
+            effective — when we put our heads together. Help the community by
+            sharing what you know. Answering questions also helps you learn!
+          </p>
+        </div>
+      </div>
+
+      <div class="trial-ad u-center-text">
+        <div class="trial-ad-head u-margin-bottom-minute">
+          <h3>Boost learning and fast track your progress with Curious plus</h3>
+        </div>
+        <div class="trial-ad-body">
+          <p>
+            Access unlimited answers, faster
+          </p>
+        </div>
+      </div>
+    </section>
+    <div class="trial-card">
+      <FreeTrialCard />
+    </div>
+    <section class="foreFooter u-center-text">
+      <div class="foreFooter__head u-margin-bottom-minute">
+        <h3>What do you need to know?</h3>
+      </div>
+      <div class="foreFooter__body">
+        <div class="foreFooter__body-text u-margin-bottom-small">
           <p>
             Whether you are stucked with WAEC mathematics or you find your
             lecturers assignment too complex, there is nothing too big or too
             small from Curious
           </p>
         </div>
+        <div class="foreFooter__body-btn">
+          <button class="btn btn--outlined btn--rounded">Ask question</button>
+        </div>
       </div>
+    </section>
+    <div class="footer">
+      <Footer />
     </div>
   </div>
 </template>
 
 <script>
+import Footer from '../components/Navigation/Footer'
+import FreeTrialCard from '../components/FreeTrialCard'
+// import Nav from '../components/Navigation/Nav'
 import SubjectCategory from '../components/SubjectCategory'
+import Testimonials from '../components/Testimonials'
 
 export default {
   auth: false,
   components: {
+    Footer,
+    FreeTrialCard,
+    // Nav,
     SubjectCategory,
+    Testimonials,
+  },
+  head() {
+    return {
+      title: 'Homepage',
+    }
   },
   data() {
     return {
       inputStyle: 'indexPageStyle',
+      dynamicStyle: '',
     }
+  },
+  watch: {
+    dynamicStyle() {
+      this.$store.dispatch('nav/addStyle', this.dynamicStyle)
+    },
+  },
+  created() {
+    // this.$store.dispatch('nav/addStyle', 'indexPageStyleScrolled')
+  },
+
+  beforeMount() {
+    this.$store.dispatch('nav/addStyle', 'indexPageStyleScrolled')
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  beforeDestroy() {
+    this.$store.dispatch('nav/addStyle', '')
+    window.removeEventListener('scroll', this.handleScroll)
+  },
+  methods: {
+    handleScroll() {
+      this.dynamicStyle = window.scrollY < 350 ? 'indexPageStyleScrolled' : ''
+    },
   },
 }
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/scss/pages/index';
 .wall {
-  padding: 5rem 0.75rem 0 1.2rem;
+  padding: 8rem 0.75rem 5rem 1.5rem;
+  background-color: $color-background-default;
+  position: relative;
 
   &-items {
     @include respond(tab-port) {
@@ -70,6 +190,7 @@ export default {
   }
 
   &-search {
+    width: 80%;
     @include respond(tab-land) {
     }
 
@@ -78,7 +199,102 @@ export default {
     }
   }
 }
-.categories {
-  height: 20vh;
+
+.review {
+  margin: 3rem auto 5rem;
+  &__head {
+    font-weight: bolder;
+    text-align: center;
+    font-size: 1.05rem;
+    padding: 0 1rem;
+  }
+  &__body {
+    text-align: center;
+    &-point {
+      font-weight: bolder;
+      font-size: 1.1rem;
+      padding-bottom: 1rem;
+    }
+    &-star {
+      padding-bottom: 0.5rem;
+      &-icon {
+        color: #fbbe2e;
+      }
+    }
+    &-text {
+      font-weight: lighter;
+    }
+  }
+}
+
+.certified {
+  text-align: center;
+  margin: 3rem;
+  &-icon {
+    color: #60d399;
+    margin: 1rem;
+  }
+  &-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+}
+
+.boast {
+  margin: 3rem;
+  &-head {
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+  }
+  &-body {
+    font-size: 1.05rem;
+    word-spacing: 1px;
+    line-height: 1.75rem;
+  }
+}
+
+.trial-ad {
+  margin: 1.5rem;
+  &-head {
+    text-transform: capitalize;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.75rem;
+  }
+  &-body {
+    font-size: 1.05rem;
+    word-spacing: 1px;
+    line-height: 1.75rem;
+  }
+}
+
+.trial-card {
+  margin: 3rem auto;
+}
+
+.foreFooter {
+  width: 100%;
+  padding: 2rem 2rem;
+  background: $color-background-default;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+
+  &__head {
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+  }
+  &__body {
+    font-size: 1.1rem;
+    line-height: 1.75rem;
+    &-text {
+    }
+    &-btn {
+    }
+  }
+}
+
+.footer {
 }
 </style>

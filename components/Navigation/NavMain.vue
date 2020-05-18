@@ -8,12 +8,17 @@
         @click="toggleAccountPage"
       />
     </font-awesome-layers>
+    <UserAccountDropDown @close="toggleAccountPage" />
   </div>
 </template>
 
 <script>
+import UserAccountDropDown from '../UserAccountDropDown'
 export default {
   name: 'NavMain.vue',
+  components: {
+    UserAccountDropDown,
+  },
   data() {
     return {
       showAccountPage: false,
@@ -22,11 +27,6 @@ export default {
   methods: {
     toggleAccountPage() {
       this.showAccountPage = !this.showAccountPage
-    },
-    logout() {
-      this.$store.dispatch('users/logout').then(() => {
-        this.$router.push({ name: 'index' })
-      })
     },
   },
 }

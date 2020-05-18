@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <Nav />
     <nuxt />
     <NotificationContainer />
@@ -36,13 +36,20 @@ export default {
   },
   head() {
     return {
-      title: 'Curious + get smarter everyday',
+      titleTemplate: '%s - Curious get smarter everyday',
+      title: 'Curious + ',
+      meta: [
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      ],
     }
   },
 }
 </script>
 
 <style lang="scss" scoped>
+.container {
+  width: 100%;
+}
 .errorMessage {
   color: red;
   font-size: 0.75rem;

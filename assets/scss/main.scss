@@ -1,6 +1,7 @@
 @import "./abstracts/variables";
 @import "./abstracts/mixins";
 
+@import "./base/animations";
 @import "./base/utilities";
 
 @import "./components/buttons";
@@ -15,6 +16,8 @@
 *::before {
   margin: 0;
   padding: 0;
+  //box-sizing: border-box;
+  //-webkit-box-sizing: border-box;
 }
 
 body {
@@ -29,14 +32,22 @@ body {
   line-height: 1.5rem;
   max-width: 1365px;
   min-width: 360px;
+  margin: 0 auto;
+  box-sizing: content-box;
+  -moz-box-sizing: content-box;
 }
 
 a {
-  text-decoration: none;
+  color: inherit;
+  text-decoration: underline;
 }
 
 button {
   font-weight: bold;
+}
+
+ul> li{
+  list-style-type: none;
 }
 
 .error, .errorMessage {
