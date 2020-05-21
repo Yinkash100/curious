@@ -8,8 +8,6 @@
 
 
 @mixin respond($breakpoint) {
-
-
   //tablets in potriate mode && phones in landscape
   @if $breakpoint == tab-port {
     @media(min-width: 600px) { @content };
@@ -22,10 +20,11 @@
 
   //Normal sized desktops
   @if $breakpoint == desktop {
-    @media(min-width: 1200px) { @content };
+    @media(min-width: 1000px) { @content };
   }
 
-  //Big desktps
+
+  //Big desktops
   @if $breakpoint == big-desktop {
     @media(min-width: 1800px) { @content };
   }

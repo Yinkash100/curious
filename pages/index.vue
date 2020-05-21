@@ -23,9 +23,6 @@
           Ruled by students, supported by parents, endorsed by teachers.
         </h3>
       </div>
-      <div class="review__testimonial">
-        <Testimonials />
-      </div>
       <div class="review__body u-margin-top-small">
         <div class="review__body-point">
           <h3>4.6</h3>
@@ -43,6 +40,9 @@
         <div class="review__body-text">
           <p>review from Google Play</p>
         </div>
+      </div>
+      <div class="review__testimonial">
+        <Testimonials />
       </div>
     </div>
     <section class="content">
@@ -94,18 +94,22 @@
     <div class="trial-card">
       <FreeTrialCard />
     </div>
-    <section class="foreFooter u-center-text">
-      <div class="foreFooter__head u-margin-bottom-minute">
-        <h3>What do you need to know?</h3>
-      </div>
-      <div class="foreFooter__body">
-        <div class="foreFooter__body-text u-margin-bottom-small">
-          <p>
-            Whether you are stucked with WAEC mathematics or you find your
-            lecturers assignment too complex, there is nothing too big or too
-            small from Curious
-          </p>
+    <section class="foreFooter">
+      <div class="foreFooter__group-text">
+        <div class="foreFooter__head u-margin-bottom-minute">
+          <h3>What do you need to know?</h3>
         </div>
+        <div class="foreFooter__body">
+          <div class="foreFooter__body-text u-margin-bottom-small">
+            <p>
+              Whether you are stucked with WAEC mathematics or you find your
+              lecturers assignment too complex, there is nothing too big or too
+              small from Curious
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="foreFooter__group-btn">
         <div class="foreFooter__body-btn">
           <button class="btn btn--outlined btn--rounded">Ask question</button>
         </div>
@@ -120,7 +124,6 @@
 <script>
 import Footer from '../components/Navigation/Footer'
 import FreeTrialCard from '../components/FreeTrialCard'
-// import Nav from '../components/Navigation/Nav'
 import SubjectCategory from '../components/SubjectCategory'
 import Testimonials from '../components/Testimonials'
 
@@ -133,11 +136,6 @@ export default {
     SubjectCategory,
     Testimonials,
   },
-  head() {
-    return {
-      title: 'Homepage',
-    }
-  },
   data() {
     return {
       inputStyle: 'indexPageStyle',
@@ -147,14 +145,15 @@ export default {
   watch: {
     dynamicStyle() {
       this.$store.dispatch('nav/addStyle', this.dynamicStyle)
+      console.log('parentDefindStyle = ', this.dynamicStyle)
     },
   },
   created() {
-    // this.$store.dispatch('nav/addStyle', 'indexPageStyleScrolled')
+    // this.$store.dispatch('nav/addStyle', this.dynamicStyle)
   },
 
   beforeMount() {
-    this.$store.dispatch('nav/addStyle', 'indexPageStyleScrolled')
+    this.$store.dispatch('nav/addStyle', 'indexPageStyle')
     window.addEventListener('scroll', this.handleScroll)
   },
   beforeDestroy() {
@@ -163,8 +162,19 @@ export default {
   },
   methods: {
     handleScroll() {
-      this.dynamicStyle = window.scrollY < 350 ? 'indexPageStyleScrolled' : ''
+      if (window.scrollY < 70) {
+        this.dynamicStyle = 'indexPageStyle'
+      } else if (window.scrollY >= 70 && window.scrollY < 350) {
+        this.dynamicStyle = 'indexPageStyleScrolled'
+      } else {
+        this.dynamicStyle = 'indexPageStyleScrolledToSearch'
+      }
     },
+  },
+  head() {
+    return {
+      title: 'Homepage',
+    }
   },
 }
 </script>
@@ -187,6 +197,14 @@ export default {
     font-family: 'Poppins', sans-serif;
     font-size: 2rem;
     line-height: 2.5rem;
+    @include respond(tab-land) {
+      font-size: 2.5rem;
+      line-height: 3rem;
+    }
+    @include respond(desktop) {
+      font-size: 3rem;
+      line-height: 4rem;
+    }
   }
 
   &-search {
@@ -279,18 +297,40 @@ export default {
   background: $color-background-default;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
+  text-align: center;
+  @include respond(tab-land) {
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  &__group {
+    &-text {
+      order: 1;
+      width: 100%;
+      @include respond(tab-land) {
+        width: 70%;
+      }
+    }
+    &-btn {
+      order: 2;
+    }
+  }
 
   &__head {
+    @include respond(tab-land) {
+    }
     text-transform: uppercase;
     font-family: 'Poppins', sans-serif;
     font-size: 1rem;
   }
   &__body {
-    font-size: 1.1rem;
+    font-size: 1rem;
     line-height: 1.75rem;
     &-text {
     }
     &-btn {
+      order: 2;
     }
   }
 }

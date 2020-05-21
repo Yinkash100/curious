@@ -17,11 +17,9 @@ export default {
       subjects: [
         {
           name: 'all',
-          url: '',
         },
         {
           name: 'mathematics',
-          url: '',
         },
         {
           name: 'chemistry',

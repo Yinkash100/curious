@@ -1,13 +1,11 @@
 <template>
   <div class="container">
     <div class="login card card--small">
-      <form v-if="$v" class="" @submit.prevent="loginUser">
-        <div
-          class="login-title u-center-text u-margin-bottom-small u-margin-top-small"
-        >
+      <form v-if="$v" class="form" @submit.prevent="loginUser">
+        <div class="login-title u-center-text">
           <h2 class="">Login</h2>
         </div>
-        <div>
+        <div class="form__items">
           <div class="form__group">
             <label for="email" class="form__label">Email</label>
             <input
@@ -27,7 +25,7 @@
               </p>
             </template>
           </div>
-          <div class="form__group u-margin-bottom-medium">
+          <div class="form__group u-margin-bottom-small">
             <label for="password" class="form__label">Password</label>
             <div class="append__btn">
               <input
@@ -69,7 +67,7 @@
           <!--          <template v-if="">-->
           <!--            <p>Username or password is incorrect.</p>-->
           <!--          </template>-->
-          <div class="login-button u-margin-bottom-small">
+          <div class="login-button">
             <button type="submit" class="btn btn--primary">
               Login
             </button>
@@ -91,11 +89,6 @@ import { required, email } from 'vuelidate/lib/validators'
 export default {
   auth: false,
   name: 'Login',
-  head() {
-    return {
-      title: 'Login',
-    }
-  },
   data() {
     return {
       showPassword: false,
@@ -110,12 +103,6 @@ export default {
     if (this.$cookies.get('user')) {
       this.$router.push({ name: 'dashboard' })
     }
-  },
-  validations: {
-    loginDetails: {
-      email: { required, email },
-      password: { required },
-    },
   },
   methods: {
     loginUser() {
@@ -155,12 +142,26 @@ export default {
       this.showPassword = !this.showPassword
     },
   },
+  head() {
+    return {
+      title: 'Login',
+    }
+  },
+  validations: {
+    loginDetails: {
+      email: { required, email },
+      password: { required },
+    },
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 .container {
-  padding: 8rem 1rem;
+  padding: 6rem 0.75rem;
+  @include respond(tab-port) {
+    padding: 6rem 3rem;
+  }
 }
 .login {
   color: $color-black;
@@ -171,12 +172,21 @@ export default {
     color: $color-primary;
   }
 }
-
+.card--small {
+  width: 17rem;
+  margin: auto;
+}
 .btn {
 }
 
 .login-button {
   margin-top: 2rem;
   text-align: right;
+}
+.form {
+  margin: auto;
+  &__items {
+    margin: 3rem auto;
+  }
 }
 </style>

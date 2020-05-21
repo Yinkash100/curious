@@ -7,10 +7,11 @@
 
 .card--small{
   max-width: 300px;
-  min-width: 280px;
-  margin-right: 1rem;
-  margin-left: 1rem;
-  margin: auto;
-  padding: 1.2rem 1.5rem;
+  min-width: 250px;
+  padding: 1.5rem 0.75rem;
+  @include respond(tab-port){
+    padding: 1.2rem 1.5rem;
+  }
+
 
 }

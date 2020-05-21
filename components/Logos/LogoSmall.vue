@@ -23,39 +23,16 @@
   position: relative;
   overflow: hidden;
   width: 34px;
-  height: 40px;
+  height: 50px;
 }
 
 .svgCode {
-  margin-top: 2px;
-  height: 80%;
-  //animation: godown 0.5s linear forwards 3s;
+  animation: godown 0.5s linear forwards 3s;
 }
 
-.c-quest {
-  display: block;
-  animation: turn2 3s linear forwards 1s;
-  transform-origin: center;
-  transform: rotateY(0deg) translateX(0);
-  position: relative;
-  overflow: hidden;
-}
-
-@keyframes turn2 {
+@keyframes turn {
   100% {
-    transform: rotateY(0deg);
-  }
-  50% {
-    transform: rotateY(180deg);
-  }
-  /*80% {*/
-  /*  transform: rotateY(180deg) translateX(100%);*/
-  /*}*/
-  /*40% {*/
-  /*  transform: rotateY(90deg) translateX(50%);*/
-  /*}*/
-  0% {
-    transform: rotateY(0deg) translateX(0);
+    transform: rotateX(0deg);
   }
 }
 

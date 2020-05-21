@@ -4,7 +4,7 @@ export default {
    ** Self defined for routers
    */
   router: {
-    middleware: ['auth'],
+   // middleware: ['auth'],
   },
   /*
    ** Headers of the page

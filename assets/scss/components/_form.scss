@@ -2,8 +2,7 @@
   &__group:not(:last-child) {
     margin-bottom: 0.75rem;
   }
-
-  &__input, &__select {
+  &__textarea, &__input, &__select {
     color: inherit;
     font-size: 1.2rem;
     font-family: inherit;
@@ -11,7 +10,7 @@
     border-radius: 0.5rem;
     background-color: rgba($color-background-default-green, 0.15);
     border: 1px solid rgba($color-black, 0.3);
-    width: 90%;
+    width: 80%;
     display: block;
 
     &:focus {
@@ -23,6 +22,11 @@
       &:invalid {
         border-bottom: 2px solid $color-warning;
       }
+    }
+
+    &__textarea{
+      font-size: 1rem;
+      line-height: 1.5rem;
     }
 
     &::-webkit-input-placeholder {
@@ -230,24 +234,22 @@ input[type='checkbox'] {
 
 .append__btn {
   position: relative;
-  box-sizing: content-box;
-  -moz-box-sizing: content-box;
+
 }
 .append__input{
-  width: 100%;
 }
 .append__btn-icon {
   top: 0;
   right: 0;
   min-width: 3rem;
   min-height: 1.2rem;
-  padding: 0.5rem 0.25rem;
+  padding: 0.65rem 0;
   position: absolute;
 
   @include respond(desktop) {
-    /*min-width: 6rem;*/
-    /*min-height: 2.4rem;*/
-    /*padding: 2rem 0.75rem;*/
+    //min-width: 6rem;
+    //min-height: 2.4rem;
+    padding: .8rem 0;
   }
 }
 

@@ -26,4 +26,8 @@ export default {
   loginUser(token) {
     return apiClient.post('/login', token)
   },
+
+  get() {
+    return apiClient.get('/subjects')
+  },
 }

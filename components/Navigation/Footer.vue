@@ -27,6 +27,7 @@
           v-model="selectedInstitution"
           :label="`Browse brainly for your school`"
           :options="curiousInstitutions"
+          :defaultSelectedValue="'All'"
           class=""
           @clicked="visit"
         />
@@ -81,10 +82,8 @@
 </template>
 
 <script>
-import BaseSelect from '../BaseSelect'
 export default {
   name: 'Footer',
-  components: { BaseSelect },
   data() {
     return {
       selectedInstitution: '',
@@ -193,6 +192,7 @@ h3 {
   }
 }
 .institution-specific {
+  width: 80%;
   margin: 1rem 0;
 }
 h4 {
@@ -205,7 +205,7 @@ h4 {
   display: flex;
   order: 3;
   &-group {
-    width: 9rem;
+    width: 7rem;
   }
   &-head {
   }

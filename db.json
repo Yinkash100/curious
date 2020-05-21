@@ -28,5 +28,61 @@
       "fullName": "Yinkash",
       "username": "yinkash"
     }
+  ],
+  "subjects": [
+    {
+      "name": "all"
+    },
+    {
+      "name": "mathematics"
+    },
+    {
+      "name": "chemistry"
+    },
+    {
+      "name": "history"
+    },
+    {
+      "name": "english"
+    },
+    {
+      "name": "biology"
+    },
+    {
+      "name": "physics"
+    },
+    {
+      "name": "social_studies"
+    },
+    {
+      "name": "agriculture"
+    },
+    {
+      "name": "arts"
+    },
+    {
+      "name": "geography"
+    },
+    {
+      "name": "business"
+    },
+    {
+      "name": "computers"
+    },
+    {
+      "name": "french"
+    },
+    {
+      "name": "spanish"
+    },
+    {
+      "name": "medicine"
+    },
+    {
+      "name": "law"
+    },
+    {
+      "name": "engineering"
+    }
   ]
 }

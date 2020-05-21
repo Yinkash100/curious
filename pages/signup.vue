@@ -128,11 +128,6 @@ export default {
     Logo,
     SignupForm,
   },
-  head() {
-    return {
-      title: 'Signup',
-    }
-  },
   data() {
     return {
       emailRegistration: false,
@@ -146,6 +141,11 @@ export default {
   beforeCreate() {
     if (this.$cookies.get('user')) {
       this.$router.push({ name: 'dashboard' })
+    }
+  },
+  head() {
+    return {
+      title: 'Signup',
     }
   },
   validations: {
@@ -203,7 +203,10 @@ export default {
   }
 
   &-main {
-    padding: 3rem 1rem;
+    padding: 3rem 0.25rem;
+    @include respond(tab-port) {
+      padding: 3rem 1rem;
+    }
   }
 
   &-info {

@@ -95,13 +95,14 @@ export default {
   }
 }
 
-.indexPageStyleScrolled {
+.indexPageStyleScrolled,
+.indexPageStyleScrolledToSearch {
+  background: $color-white;
+}
+.indexPageStyle {
   background: $color-background-default;
   box-shadow: none;
   border: none;
-}
-.indexPageStyle {
-  background: $color-white;
 }
 
 .nav-links-left {
