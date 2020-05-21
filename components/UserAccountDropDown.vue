@@ -1,5 +1,8 @@
 <template>
   <div class="container">
+    <div class="action">
+      <div class="action-icon"></div>
+    </div>
     <button class="btn btn-text" @click="logout">Logout</button>
     <font-awesome-icon :icon="['far', 'times-circle']" @click="closeDropDown" />
   </div>

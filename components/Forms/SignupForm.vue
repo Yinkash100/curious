@@ -200,7 +200,6 @@ export default {
       }
     },
     createUser() {
-      console.log('payload', this.userCredential)
       if (!this.$v.userCredential.fullName.$invalid) {
         delete this.userCredential.retypePassword
 
@@ -230,16 +229,16 @@ export default {
 }
 
 .action-button {
-  display: inline-block;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
 
   &-left {
     display: block;
-    float: left;
   }
 
   &-right {
     display: block;
-    float: right;
   }
 }
 </style>

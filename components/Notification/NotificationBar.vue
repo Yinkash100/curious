@@ -30,7 +30,7 @@ export default {
   mounted() {
     this.timeout = setTimeout(() => {
       this.$store.dispatch('notification/remove', this.notification)
-    }, 50000)
+    }, 5000)
   },
   beforeDestroy() {
     clearTimeout(this.timeout)

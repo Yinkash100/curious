@@ -81,9 +81,4 @@ export default {
     }
   }
 }
-
-.navSearchStyle {
-  min-width: 13rem;
-  width: 90%;
-}
 </style>

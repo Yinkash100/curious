@@ -1,15 +1,7 @@
 <template>
   <div class="container">
-    <div v-if="callingPath === 'index'" class="dropdown drop">
-      <div class="dropdown-main">
-        <div class="">
-          <img
-            :src="`cancel.svg`"
-            height="20"
-            width="20"
-            class="dropdown__close-icon"
-          />
-        </div>
+    <div class="drop">
+      <div v-if="callingPath === 'index'" class="dropdown drop">
         <div class="dropdown__text">
           <div class="dropdown__text-group">
             <h3 class="dropdown__text-head">Let's start sharing knowledge</h3>
@@ -43,21 +35,25 @@
           </div>
         </div>
       </div>
-    </div>
-    <div v-else class="droptab drop">
-      <div
-        v-if="callingPath === 'signup' || callingPath === 'question'"
-        class="droptab-btn"
-        @click="goto('/login')"
-      >
-        <button class="btn btn--outlined btn--rounded btn-join">Log In</button>
-      </div>
-      <div
-        v-if="callingPath === 'login' || callingPath === 'question'"
-        class="droptab-btn"
-        @click="goto('/signup')"
-      >
-        <button class="btn btn--primary btn--rounded btn-join">Join Now</button>
+      <div v-else class="droptab drop">
+        <div
+          v-if="callingPath === 'signup' || callingPath === 'question'"
+          class="droptab-btn"
+          @click="goto('/login')"
+        >
+          <button class="btn btn--outlined btn--rounded btn-join">
+            Log In
+          </button>
+        </div>
+        <div
+          v-if="callingPath === 'login' || callingPath === 'question'"
+          class="droptab-btn"
+          @click="goto('/signup')"
+        >
+          <button class="btn btn--primary btn--rounded btn-join">
+            Join Now
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -97,17 +93,20 @@ export default {
   z-index: 999;
   display: block;
   position: absolute;
-  top: 4rem;
   width: 100vw;
   left: calc(-50vw + 50%);
+  top: 2rem;
   background: $color-white;
   box-shadow: 0 0 1rem rgba($color-black, 0.1);
-  padding: 0.25rem;
 }
 .dropdown {
+  padding: 4rem 0 0.25rem;
+  height: 85vh;
+  top: 2rem;
+
   &-main {
     position: relative;
-    padding: 8rem;
+    padding-top: 8rem;
   }
 
   &__close {
@@ -135,6 +134,7 @@ export default {
   text-align: center;
   display: flex;
   flex-wrap: nowrap;
+  padding: 1rem;
   &-btn {
     width: 47%;
     margin: auto;

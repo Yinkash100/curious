@@ -97,7 +97,7 @@
         </div>
       </div>
       <div v-else>
-        <div class="card">
+        <div class="card card--small">
           <SignupForm :email="user.email" @closeMainForm="closeMainForm" />
         </div>
       </div>

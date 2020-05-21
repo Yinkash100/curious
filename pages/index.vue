@@ -187,9 +187,12 @@ export default {
 
   &-items {
     @include respond(tab-port) {
-      width: 60%;
+      width: 70%;
     }
     @include respond(tab-land) {
+      width: 65%;
+    }
+    @include respond(desktop) {
       width: 50%;
     }
   }
