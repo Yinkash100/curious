@@ -146,7 +146,6 @@ export default {
   watch: {
     dynamicStyle() {
       this.$store.dispatch('nav/addStyle', this.dynamicStyle)
-      console.log('parentDefindStyle = ', this.dynamicStyle)
     },
   },
   created() {

@@ -1,5 +1,3 @@
-import curiousServices from '../services/curiousServices'
-
 export const namespaced = true
 
 export const state = () => ({
@@ -26,9 +24,9 @@ export const mutations = {
 
 export const actions = {
   createUser({ commit, dispatch }, user) {
-    return curiousServices
-      .createUser(user)
-      .then(({ data }) => {
+    return this.$axios
+      .$post('/users', user)
+      .then((data) => {
         commit('SET_USER_DATA', data)
       })
       .catch((error) => {
@@ -44,9 +42,9 @@ export const actions = {
       })
   },
   loginUser({ commit, dispatch }, credentials) {
-    return curiousServices
-      .loginUser(credentials)
-      .then(({ data }) => {
+    return this.$axios
+      .$post('/login', credentials)
+      .then((data) => {
         commit('SET_USER_DATA', data)
       })
       .catch((error) => {

@@ -44,7 +44,8 @@ export default {
   },
   methods: {
     submitQuestion() {
-      console.log('question', this.question)
+      this.question = {}
+      this.$axios.$post('/questions')
     },
   },
 }

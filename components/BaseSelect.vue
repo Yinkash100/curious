@@ -23,8 +23,6 @@
 </template>
 
 <script>
-import curiousServices from '../services/curiousServices'
-
 export default {
   name: 'BaseSelect',
   inheritAttrs: false,
@@ -73,15 +71,15 @@ export default {
       if (this.fetchData && this.url) {
         // const callBackFunc = this.callBackFunc
 
-        curiousServices
-          .get(this.url)
-          .then((body) => {
-            console.log('returned', body)
-            if (body) {
+        this.$axios
+          .$get(this.url)
+          .then((res) => {
+            console.log('returned', res)
+            if (res) {
               console.log('Whoa it returned a response')
 
-              if (Array.isArray(body.data)) {
-                this.options = body.data.map((subject) => subject.name)
+              if (Array.isArray(res)) {
+                this.options = res.map((subject) => subject.name)
                 this.fetchData = false
               }
             }

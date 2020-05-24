@@ -41,8 +41,6 @@ export default {
   },
   computed: {
     strokeDashoffset() {
-      console.log('circumference', this.circumference)
-      console.log('progress', this.progress)
       return this.circumference - (this.progress / 100) * this.circumference
     },
   },

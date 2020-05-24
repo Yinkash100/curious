@@ -10,7 +10,6 @@
 <script>
 import Footer from '../components/Navigation/Footer'
 import QuestionSlip from '../components/QuestionSlip'
-import curiousServices from '../services/curiousServices'
 import requiresAuth from '../middleware/requiresAuth'
 export default {
   name: 'DashboardVue',
@@ -26,10 +25,10 @@ export default {
   },
   methods: {
     getQuestions() {
-      curiousServices
+      this.$axios
         .get('/questions')
-        .then((body) => {
-          this.questions = body.data
+        .then((res) => {
+          this.questions = res.data
         })
         .catch((err) => {
           console.log(err)

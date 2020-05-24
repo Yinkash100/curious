@@ -133,9 +133,7 @@ export default {
       this.$emit(close)
     },
     logout() {
-      console.log('I wannna logout')
       this.$store.dispatch('users/logout').then(() => {
-        console.log('ati lo ati de')
         this.$router.push({ name: 'index' })
       })
     },

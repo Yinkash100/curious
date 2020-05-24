@@ -107,6 +107,12 @@ export default {
 
   axios: {
     baseURL: 'http://localhost:3001/',
+    withCredentials: false, // This is the default
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    timeout: 10000,
   },
 
   /*

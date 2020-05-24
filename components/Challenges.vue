@@ -39,8 +39,6 @@
 </template>
 
 <script>
-import curiousServices from '../services/curiousServices'
-
 export default {
   name: 'Challenges',
   data() {
@@ -55,10 +53,11 @@ export default {
   },
   methods: {
     getChallenges() {
-      curiousServices
-        .get('/challenges')
-        .then((body) => {
-          this.challenges = body.data
+      console.log('about to get the challenges')
+      this.$axios
+        .$get('/challenges')
+        .then((res) => {
+          this.challenges = res
         })
         .catch((err) => {
           console.log(err)
