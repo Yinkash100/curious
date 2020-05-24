@@ -8,7 +8,7 @@
         @click="toggleAccountPage"
       />
     </font-awesome-layers>
-    <UserAccountDropDown @close="toggleAccountPage" />
+    <UserAccountDropDown v-if="showAccountPage" @close="toggleAccountPage" />
   </div>
 </template>
 
@@ -58,6 +58,6 @@ export default {
   background: $color-white;
 }
 .user-circle {
-  color: $color-primary;
+  color: $color-grey-dark;
 }
 </style>

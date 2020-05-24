@@ -56,17 +56,6 @@
               </p>
             </template>
           </div>
-          <!--            <v-text-field-->
-          <!--              :type="showPassword ? 'text' : 'password'"-->
-          <!--              :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"-->
-          <!--              label="Password"-->
-          <!--              prepend-icon="mdi-lock"-->
-          <!--              @click:append="showPassword = !showPassword"-->
-          <!--            />-->
-
-          <!--          <template v-if="">-->
-          <!--            <p>Username or password is incorrect.</p>-->
-          <!--          </template>-->
           <div class="login-button">
             <button type="submit" class="btn btn--primary">
               Login
@@ -88,6 +77,7 @@ import { required, email } from 'vuelidate/lib/validators'
 
 export default {
   auth: false,
+  middleware: 'requiresNoAuth',
   name: 'Login',
   data() {
     return {
@@ -113,24 +103,9 @@ export default {
           message: 'please fill all fields correctly and try again',
         })
       } else {
-        // try {
-        //   console.log('ya doing well')
-        //   await this.$auth.loginWith('local', this.loginDetails).catch((e) => {
-        //     console.log('failed logging in', e)
-        //   })
-        //   if (this.$auth.loggedIn) {
-        //     this.$router.push({ name: 'dashboard' })
-        //     console.log('login duccessfulick')
-        //   }
-        // } catch (err) {
-        //   console.log('Incorrect username or password')
-        //   console.log('Error', err)
-        // }
-
         this.$store
           .dispatch('users/loginUser', this.loginDetails)
           .then(() => {
-            console.log('cook', this.$cookies.get('user'))
             this.$router.push({ name: 'dashboard' })
           })
           .catch((err) => {

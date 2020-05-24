@@ -32,8 +32,8 @@ body {
   line-height: 1.5rem;
   max-width: 1365px;
   margin: 0 auto;
-  box-sizing: content-box;
-  -moz-box-sizing: content-box;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
 }
 
 a {

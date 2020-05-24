@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: 'BaseSearchBar.vue',
+  name: 'BaseSearchBar',
   inheritAttrs: false,
   props: {
     inputStyle: {

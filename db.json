@@ -27,6 +27,13 @@
       "id": "b9fb1eca-de1a-42fb-9a47-18ea3ceaf0e8",
       "fullName": "Yinkash",
       "username": "yinkash"
+    },
+    {
+      "email": "yinkash1001@gmail.com",
+      "password": "$2a$10$iqVx5cF35v46nihUvgJtn.DSyCd7K5PQ77570ZW2Auj7CD0QZKoBS",
+      "id": "ac758add-5ddc-4cb6-b7db-9ef320df23cc",
+      "fullName": "Agbaskelebe",
+      "username": "longbridge"
     }
   ],
   "subjects": [
@@ -83,6 +90,169 @@
     },
     {
       "name": "engineering"
+    }
+  ],
+  "challenges": [
+    {
+      "name": "Answer 5 questions from any subject in 48 hours to collect 50 points",
+      "user_answer": 0,
+      "total_required_answer": 5,
+      "time_limit": [
+        2,
+        0
+      ],
+      "time_remaining": ""
+    },
+    {
+      "name": "Answer 10 questions from any subject in 48 hours to collect 100 points",
+      "user_answer": 0,
+      "total_required_answer": 10,
+      "time_limit": [
+        2,
+        0
+      ],
+      "time_remaining": ""
+    },
+    {
+      "name": "Answer 25 questions from any subject in 48 hours to collect 400 points",
+      "user_answer": 0,
+      "total_required_answer": 25,
+      "time_limit": [
+        2,
+        0
+      ],
+      "time_remaining": ""
+    },
+    {
+      "name": "Answer 5 English questions in 48 hours to collect 50 points",
+      "user_answer": 0,
+      "total_required_answer": 5,
+      "time_limit": [
+        2,
+        0
+      ],
+      "time_remaining": ""
+    },
+    {
+      "name": "Answer 10 English questions in 48 hours to collect 100 points",
+      "user_answer": 0,
+      "total_required_answer": 10,
+      "time_limit": [
+        2,
+        0
+      ],
+      "time_remaining": ""
+    },
+    {
+      "name": "Answer 25 English questions in 48 hours to collect 400 points",
+      "user_answer": 0,
+      "total_required_answer": 25,
+      "time_limit": [
+        2,
+        0
+      ],
+      "time_remaining": ""
+    },
+    {
+      "name": "Answer 5 Mathematics questions in 48 hours to collect 50 points",
+      "user_answer": 0,
+      "total_required_answer": 5,
+      "time_limit": [
+        2,
+        0
+      ],
+      "time_remaining": ""
+    },
+    {
+      "name": "Answer 10 Mathematics questions in 48 hours to collect 100 points",
+      "user_answer": 0,
+      "total_required_answer": 10,
+      "time_limit": [
+        2,
+        0
+      ],
+      "time_remaining": ""
+    },
+    {
+      "name": "Answer 25 Mathematics questions in 48 hours to collect 400 points",
+      "user_answer": 0,
+      "total_required_answer": 25,
+      "time_limit": [
+        2,
+        0
+      ],
+      "time_remaining": ""
+    },
+    {
+      "name": "Answer 5 Social Studies questions in 48 hours to collect 50 points",
+      "user_answer": 0,
+      "total_required_answer": 5,
+      "time_limit": [
+        2,
+        0
+      ],
+      "time_remaining": ""
+    },
+    {
+      "name": "Answer 10 Social Studies questions in 48 hours to collect 100 points",
+      "user_answer": 0,
+      "total_required_answer": 10,
+      "time_limit": [
+        2,
+        0
+      ],
+      "time_remaining": ""
+    },
+    {
+      "name": "Answer 25 Social Studies questions in 48 hours to collect 400 points",
+      "user_answer": 0,
+      "total_required_answer": 25,
+      "time_limit": [
+        2,
+        0
+      ],
+      "time_remaining": ""
+    },
+    {
+      "name": "Answer 5 History questions in 48 hours to collect 50 points",
+      "user_answer": 0,
+      "total_required_answer": 5,
+      "time_limit": [
+        2,
+        0
+      ],
+      "time_remaining": ""
+    },
+    {
+      "name": "Answer 10 History questions in 48 hours to collect 100 points",
+      "user_answer": 0,
+      "total_required_answer": 10,
+      "time_limit": [
+        2,
+        0
+      ],
+      "time_remaining": ""
+    },
+    {
+      "name": "Answer 25 History questions in 48 hours to collect 400 points",
+      "user_answer": 0,
+      "total_required_answer": 25,
+      "time_limit": [
+        2,
+        0
+      ],
+      "time_remaining": ""
+    }
+  ],
+  "questions": [
+    {
+      "asker": "Emmanuel",
+      "subject_category": "Mathematics",
+      "time_asked": "Just now",
+      "question_points": 13,
+      "text": "Lindor's Truffles have an outer shell diameter of 1.25 in. and a creamy milk chocolate fudge that makes up the inner circle of the ball that has a diameter of 0.5 in. How much more volume does the outer shell occupy then the inner fudge?",
+      "watchers": [],
+      "first_question": true
     }
   ]
 }

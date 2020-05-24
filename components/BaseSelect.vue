@@ -18,27 +18,6 @@
         >
       </select>
       <font-awesome-icon icon="angle-down" class="append__btn-icon" />
-      <!--      <select-->
-      <!--        class="custom-combobox"-->
-      <!--        v-model="currentOption"-->
-      <!--        :class="customClass"-->
-      <!--        @input="$emit('input', $event.target.value)"-->
-      <!--        @change="onSelectedEvent(currentOption)"-->
-      <!--      >-->
-      <!--        <option-->
-      <!--          value=""-->
-      <!--          v-if="defaultLabelText != null && defaultLabelText.length > 0"-->
-      <!--          :disabled="disableLabelText == 1"-->
-      <!--          >{{ defaultLabelText }}</option-->
-      <!--        >-->
-      <!--        <option-->
-      <!--          v-for="item in optionItems"-->
-      <!--          :value="item.Id"-->
-      <!--          :key="item.Id"-->
-      <!--          :selected="defaultSelectedValue == item.Id"-->
-      <!--          >{{ defaultSelectedValue }}{{ item.Text }}</option-->
-      <!--        >-->
-      <!--      </select>-->
     </div>
   </div>
 </template>
@@ -94,18 +73,23 @@ export default {
       if (this.fetchData && this.url) {
         // const callBackFunc = this.callBackFunc
 
-        curiousServices.get(this.url).then((body) => {
-          console.log('returned', body)
-          if (body) {
-            console.log('Whoa it returned a response')
+        curiousServices
+          .get(this.url)
+          .then((body) => {
+            console.log('returned', body)
+            if (body) {
+              console.log('Whoa it returned a response')
 
-            if (Array.isArray(body.data)) {
-              this.options = body.data.map((a) => a.name)
-              console.log('options', this.options)
-              this.fetchData = false
+              if (Array.isArray(body.data)) {
+                this.options = body.data.map((subject) => subject.name)
+                this.fetchData = false
+              }
             }
-          }
-        })
+          })
+          .catch((err) => {
+            console.log(err)
+            this.fetchData = false
+          })
       }
     },
   },

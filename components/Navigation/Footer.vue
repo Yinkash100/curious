@@ -1,5 +1,90 @@
 <template>
   <div class="container">
+    <section v-if="loggedIn" class="footer-links top-footer-link">
+      <div class="footer-links-group">
+        <h4 class="footer-links-head">Company</h4>
+        <ul class="footer-links-body">
+          <li class="footer-links-each">
+            <nuxt-link to="/">About us</nuxt-link>
+          </li>
+          <li class="footer-links-each">
+            <nuxt-link to="/">Blog</nuxt-link>
+          </li>
+          <li class="footer-links-each">
+            <nuxt-link to="/">Careers</nuxt-link>
+          </li>
+          <li class="footer-links-each">
+            <nuxt-link to="/">Terms of Use</nuxt-link>
+          </li>
+          <li class="footer-links-each">
+            <nuxt-link to="/">Copyright Policy</nuxt-link>
+          </li>
+          <li class="footer-links-each">
+            <nuxt-link to="/">Cookie Policy</nuxt-link>
+          </li>
+          <li class="footer-links-each">
+            <nuxt-link to="/">Privacy Policy</nuxt-link>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-links-group">
+        <h4 class="footer-links-head">Help</h4>
+        <ul class="footer-links-body">
+          <li class="footer-links-each">
+            <nuxt-link to="/">Signup</nuxt-link>
+          </li>
+          <li class="footer-links-each">
+            <nuxt-link to="/">Help Center</nuxt-link>
+          </li>
+          <li class="footer-links-each">
+            <nuxt-link to="/">Safety Center</nuxt-link>
+          </li>
+          <li class="footer-links-each">
+            <nuxt-link to="/">Responsible</nuxt-link>
+          </li>
+          <li class="footer-links-each">
+            <nuxt-link to="/">Disclosure</nuxt-link>
+          </li>
+          <li class="footer-links-each">
+            <nuxt-link to="/">Agreement</nuxt-link>
+          </li>
+          <li class="footer-links-each">
+            <nuxt-link to="/">Contact Us</nuxt-link>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section v-if="loggedIn" class="footer-links top-footer-link">
+      <div class="footer-links-group">
+        <h4 class="footer-links-head">Community</h4>
+        <ul class="footer-links-body">
+          <li class="footer-links-each">
+            <nuxt-link to="/">Curious Community</nuxt-link>
+          </li>
+          <li class="footer-links-each">
+            <nuxt-link to="/">Curious for Schools & Teachers</nuxt-link>
+          </li>
+          <li class="footer-links-each">
+            <nuxt-link to="/">Curious for Parents</nuxt-link>
+          </li>
+          <li class="footer-links-each">
+            <nuxt-link to="/">Curious Scholarship Program</nuxt-link>
+          </li>
+          <li class="footer-links-each">
+            <nuxt-link to="/">Honor Code</nuxt-link>
+          </li>
+          <li class="footer-links-each">
+            <nuxt-link to="/">Community Guidelines</nuxt-link>
+          </li>
+          <li class="footer-links-each">
+            <nuxt-link to="/">Community Insights</nuxt-link>
+          </li>
+          <li class="footer-links-each">
+            <nuxt-link to="/">Become a Volunteer</nuxt-link>
+          </li>
+        </ul>
+      </div>
+    </section>
     <div class="cookie-policy">
       <div class="cookie-policy__head u-center-text">
         <h3>We're in the know</h3>
@@ -33,7 +118,7 @@
         />
       </div>
     </div>
-    <section class="footer-links">
+    <section v-if="!loggedIn" class="footer-links bottom-footer-link">
       <div class="footer-links-group">
         <h4 class="footer-links-head">About us</h4>
         <ul class="footer-links-body">
@@ -82,6 +167,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'Footer',
   data() {
@@ -133,6 +219,11 @@ export default {
       ],
     }
   },
+  computed: {
+    ...mapGetters({
+      loggedIn: 'users/loggedIn',
+    }),
+  },
   methods: {
     visit(institution) {
       console.log(institution)
@@ -161,7 +252,7 @@ h3 {
   margin-top: 1rem;
   padding: 1rem 0;
   display: block;
-  order: 1;
+  order: 11;
 
   &__head {
     font-family: 'Poppins', sans-serif;
@@ -176,7 +267,7 @@ h3 {
   width: 19rem;
   margin-top: 1rem;
   padding: 1rem 0;
-  order: 2;
+  order: 12;
 }
 .curious-app {
   margin: 1rem 0;
@@ -203,9 +294,9 @@ h4 {
   margin-top: 1rem;
   padding: 1rem 0;
   display: flex;
-  order: 3;
+
   &-group {
-    width: 7rem;
+    margin: 0 1.5rem 0 0;
   }
   &-head {
   }
@@ -217,5 +308,11 @@ h4 {
   a {
     text-decoration: none;
   }
+}
+.top-footer-link {
+  order: 1;
+}
+.bottom-footer-link {
+  order: 21;
 }
 </style>

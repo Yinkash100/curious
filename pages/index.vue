@@ -129,6 +129,7 @@ import Testimonials from '../components/Testimonials'
 
 export default {
   auth: false,
+  middleware: 'requiresNoAuth',
   components: {
     Footer,
     FreeTrialCard,

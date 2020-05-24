@@ -1,18 +1,49 @@
 <template>
-  <div class="mt-10">
-    <h1 class="mt-3">This page should only be visible to logged in users.</h1>
+  <div class="container">
+    <div v-for="question in questions" :key="question.id" class="questions">
+      <QuestionSlip :question="question" />
+    </div>
+    <Footer />
   </div>
 </template>
 
 <script>
+import Footer from '../components/Navigation/Footer'
+import QuestionSlip from '../components/QuestionSlip'
+import curiousServices from '../services/curiousServices'
+import requiresAuth from '../middleware/requiresAuth'
 export default {
   name: 'DashboardVue',
-  components: {},
+  middleware: requiresAuth,
+  components: { QuestionSlip, Footer },
   data() {
-    return {}
+    return {
+      questions: '',
+    }
   },
-  methods: {},
+  created() {
+    this.getQuestions()
+  },
+  methods: {
+    getQuestions() {
+      curiousServices
+        .get('/questions')
+        .then((body) => {
+          this.questions = body.data
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+  },
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style lang="scss" scoped>
+.container {
+  padding-top: 4rem;
+}
+.questions {
+  background-color: rgba($color-background-default-green, 0.15);
+}
+</style>

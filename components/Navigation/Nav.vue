@@ -36,9 +36,6 @@ export default {
       parentDefinedStyle: 'nav/parentDefinedStyle',
     }),
   },
-  // created() {
-  //   console.log('loggedIn', loggedIn)
-  // },
   methods: {},
 }
 </script>

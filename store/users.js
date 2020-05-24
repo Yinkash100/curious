@@ -1,26 +1,26 @@
-import axios from 'axios'
 import curiousServices from '../services/curiousServices'
 
 export const namespaced = true
 
 export const state = () => ({
   user: null,
+  loggedIn: null,
 })
 
 export const mutations = {
   SET_USER_DATA(state, userData) {
     userData = JSON.stringify(userData)
+    state.loggedIn = true
     state.user = userData
-    this.$auth.setUser(userData)
-    // this.$auth.setToken(userData.accessToken)
     this.$cookies.set('user', userData, {
       path: '/',
     })
-    axios.defaults.headers.common.Authorization = `Bearer ${userData.token}`
   },
   CLEAR_USER_DATA(state) {
     state.user = null
+    state.loggedIn = null
     this.$cookies.remove('user')
+    console.log(state.loggedIn)
   },
 }
 
@@ -30,14 +30,6 @@ export const actions = {
       .createUser(user)
       .then(({ data }) => {
         commit('SET_USER_DATA', data)
-        dispatch(
-          'notification/add',
-          {
-            type: 'success',
-            message: 'User created successfully /nLogin to access your account',
-          },
-          { root: true }
-        )
       })
       .catch((error) => {
         dispatch(
@@ -71,14 +63,12 @@ export const actions = {
   },
   logout({ commit }) {
     commit('CLEAR_USER_DATA')
-    this.$auth.logout().then(() => {
-      location.reload()
-    })
+    console.log('we don clear am')
   },
 }
 
 export const getters = {
   loggedIn(state) {
-    return state.user
+    return state.loggedIn
   },
 }

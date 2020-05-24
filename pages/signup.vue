@@ -122,8 +122,8 @@ import SignupForm from '@/components/Forms/SignupForm'
 
 export default {
   auth: false,
+  middleware: 'requiresNoAuth',
   name: 'Signup',
-  // meta: { requiresAuth: false },
   components: {
     Logo,
     SignupForm,
@@ -160,8 +160,7 @@ export default {
     audioNotification(type) {
       this.$store.dispatch('notification/add', {
         type,
-        message:
-          'This feature is yet to be implemented by those of us that can implement it',
+        message: 'This feature is yet to be implemented',
       })
     },
     showEmailField() {

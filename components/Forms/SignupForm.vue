@@ -202,8 +202,6 @@ export default {
     createUser() {
       if (!this.$v.userCredential.fullName.$invalid) {
         delete this.userCredential.retypePassword
-
-        // this.userCredential.password = curiousServices.hashPassword(this.userCredential)
         this.$store
           .dispatch('users/createUser', this.userCredential)
           .then(() => {
@@ -225,7 +223,9 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  padding: 3rem 1rem;
+  padding: 3rem 0;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
 }
 
 .action-button {
@@ -240,5 +240,8 @@ export default {
   &-right {
     display: block;
   }
+}
+.form__input {
+  width: 100%;
 }
 </style>

@@ -1,10 +1,12 @@
+import requiresAuth from './middleware/requiresAuth'
+
 export default {
   mode: 'universal',
   /*
    ** Self defined for routers
    */
   router: {
-   // middleware: ['auth'],
+
   },
   /*
    ** Headers of the page
@@ -41,9 +43,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: [
-    '@/assets/scss/main.scss',
-  ],
+  css: ['@/assets/scss/main.scss'],
   /*
    ** Plugins to load before mounting the App
    */
@@ -63,15 +63,13 @@ export default {
    */
   modules: [
     'cookie-universal-nuxt',
-    '@nuxtjs/auth',
+    '@nuxtjs/axios',
     '@nuxtjs/style-resources',
     '@nuxtjs/fontawesome',
-    // 'nuxt-fontawesome',
   ],
   styleResources: {
     scss: ['@/assets/scss/main.scss'],
   },
-
   fontawesome: {
     icons: {
       solid: [
@@ -88,8 +86,19 @@ export default {
         'faStarHalf',
         'faCertificate',
         'faAngleDown',
+        'faChevronRight',
         'faChevronCircleLeft',
         'faChevronCircleRight',
+        'faUserAlt',
+        'faBell',
+        'faUserFriends',
+        'faCommentAlt',
+        'faUniversalAccess',
+        'faSignOutAlt',
+        'faEdit',
+        'faTools',
+        'faBook',
+        'faClock',
       ],
       brands: ['faFacebook', 'faGoogle', 'faYoutube'],
       regular: ['faTimesCircle'],
@@ -97,20 +106,9 @@ export default {
   },
 
   axios: {
-    baseURL: 'http://localhost:3001',
+    baseURL: 'http://localhost:3001/',
   },
 
-  auth: {
-    strategies: {
-      local: {
-        endpoints: {
-          login: false,
-          user: false,
-          logout: false,
-        },
-      },
-    },
-  },
   /*
    ** Build configuration
    */
