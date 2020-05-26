@@ -105,7 +105,7 @@ export default {
   },
 
   axios: {
-    baseURL: 'http://my-json-server.typicode.com/yinkash100/curious/',
+    baseURL: 'http://my-json-server.typicode.com/yinkash100/curious',
     withCredentials: false, // This is the default
     headers: {
       Accept: 'application/json',
