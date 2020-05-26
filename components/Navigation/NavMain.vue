@@ -38,7 +38,8 @@ export default {
   align-items: flex-end;
   justify-content: space-between;
   width: 100%;
-
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
   &--search {
     display: flex;
     align-items: center;

@@ -22,7 +22,8 @@
     "nuxt": "^2.12.2",
     "require-context": "^1.1.0",
     "uuid": "^8.0.0",
-    "vuelidate": "^0.7.5"
+    "vuelidate": "^0.7.5",
+    "vuex-persistedstate": "^3.0.1"
   },
   "devDependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.13.0",

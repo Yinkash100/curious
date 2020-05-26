@@ -52,6 +52,8 @@ export default {
   min-height: 4rem;
   background: $color-white;
   box-shadow: 0.5rem 0 0.5rem $color-grey-dark;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
 }
 .nav {
   width: 100%;
@@ -64,7 +66,6 @@ export default {
     @include respond(tab-port) {
       display: flex;
       align-items: center;
-      padding: 1rem;
     }
   }
 
@@ -76,7 +77,7 @@ export default {
   &-be4-links {
     display: flex;
     height: 100%;
-    padding: 1rem 0 1rem;
+    padding: 1rem 0;
     align-content: center;
     justify-content: flex-end;
   }

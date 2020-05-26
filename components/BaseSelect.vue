@@ -6,7 +6,7 @@
         v-model="selectedValue"
         class="form__select append__input"
         @input="$emit('input', $event.target.value)"
-        @focus="fetchOptions"
+        @focus="fetchOptions(dataKey)"
       >
         <option
           v-for="option in options"
@@ -47,6 +47,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    dataKey: {
+      type: String,
+      default: '',
+    },
     defaultSelectedValue: {
       type: String,
       default: '',
@@ -60,34 +64,25 @@ export default {
   },
   watch: {
     value(newValue) {
-      this.currentOption = newValue
+      this.selectedValue = newValue
     },
   },
   mounted() {
     this.selectedValue = this.defaultSelectedValue
   },
   methods: {
-    fetchOptions() {
+    async fetchOptions(dataKey) {
       if (this.fetchData && this.url) {
-        // const callBackFunc = this.callBackFunc
-
-        this.$axios
-          .$get(this.url)
-          .then((res) => {
-            console.log('returned', res)
-            if (res) {
-              console.log('Whoa it returned a response')
-
-              if (Array.isArray(res)) {
-                this.options = res.map((subject) => subject.name)
-                this.fetchData = false
-              }
-            }
-          })
-          .catch((err) => {
-            console.log(err)
-            this.fetchData = false
-          })
+        this.options = ['loading...']
+        try {
+          const response = await this.$axios.$get(this.url)
+          this.options = response.map((res) => res[dataKey])
+          this.fetchData = false
+          console.log('options', this.options)
+        } catch (err) {
+          console.log(err)
+          this.fetchData = false
+        }
       }
     },
   },

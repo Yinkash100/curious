@@ -57,6 +57,7 @@ export default {
   font-size: 1.5rem;
   padding: 0.5rem;
   width: 100%;
+  background-color: rgba($color-white, 0.5);
 
   @include respond(tab-land) {
     line-height: 2.5rem;

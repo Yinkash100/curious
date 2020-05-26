@@ -7,17 +7,21 @@
         <textarea
           v-model="question.text"
           placeholder="Write your question here (Keep it simple and clear to get the best answers"
-          rows="6"
           class="form__textarea"
         ></textarea>
       </div>
-      <div class="form__group">
+      <div>
         <BaseSelect
           v-model="question.subject"
           :label="'Subject'"
           :remote="true"
+          :dataKey="'text'"
           :url="'/subjects'"
+          class="form__base-select select-subject"
         />
+      </div>
+      <div class="form__base-select select-point">
+        <BaseSelect v-model="question.subject" :label="'Points'" :option="[]" />
       </div>
       <div>
         <button
@@ -53,23 +57,34 @@ export default {
 
 <style scoped lang="scss">
 .container {
-  padding: 6rem 0.75rem;
-  @include respond(tab-port) {
-    padding: 6rem 3rem;
-  }
+  padding: 6rem 0;
+  width: 100%;
 }
 .form {
-  margin: 0rem 1rem;
+  margin: 2rem;
+  box-sizing: content-box;
+  -moz-box-sizing: content-box;
 
   &__head {
     font-size: 1.1rem;
   }
   &__textarea {
+    width: 100%;
+    max-width: 400px;
+    height: 9rem;
     font-size: 1rem;
     line-height: 1.5rem;
+    @include respond(tab-land) {
+    }
+  }
+  &__base-select {
+    width: 100%;
+    max-width: 400px;
   }
 }
 .question-btn {
+  margin: 2rem 0;
   text-transform: uppercase;
+  background-color: $color-background-default-deep;
 }
 </style>

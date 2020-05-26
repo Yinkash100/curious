@@ -1,25 +1,27 @@
 <template>
-  <div class="trial-card">
-    <div class="trial-card__head">
-      <div class="trial-card__head-logo">
-        <Logo />
+  <div class="trial-card__container">
+    <div class="trial-card">
+      <div class="trial-card__head">
+        <div class="trial-card__head-logo">
+          <Logo />
+        </div>
+        <div class="trial-card__head-text u-margin-bottom-minute">
+          <h3>Get Curious plus</h3>
+        </div>
       </div>
-      <div class="trial-card__head-text u-margin-bottom-minute">
-        <h3>Get Curious plus</h3>
-      </div>
-    </div>
-    <div class="trial-card__body">
-      <div class="trial-card__body-text u-margin-bottom-small">
-        <ul>
-          <li>Unlimited access, including Expert-Verified Answers</li>
-          <li>Faster answers to your questions</li>
-          <li>No ad interruptions. Ever</li>
-        </ul>
-      </div>
-      <div class="trial-card__body-action">
-        <button id="trial-btn" class="btn btn--primary btn--rounded">
-          Start your 7 day free trial
-        </button>
+      <div class="trial-card__body">
+        <div class="trial-card__body-text u-margin-bottom-small">
+          <ul>
+            <li>Unlimited access, including Expert-Verified Answers</li>
+            <li>Faster answers to your questions</li>
+            <li>No ad interruptions. Ever</li>
+          </ul>
+        </div>
+        <div class="trial-card__body-action">
+          <button id="trial-btn" class="btn btn--primary btn--rounded">
+            Start your 7 day free trial
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -37,13 +39,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.trial-card {
-  margin: 1rem;
-  padding: 1rem 2rem;
+.trial-card__container {
+  width: 100%;
+  min-width: 16rem;
   background: $color-background-default-green;
-  min-width: 18rem;
+}
+.trial-card {
+  padding: 0.5rem;
+
   @include respond(tab-land) {
-    padding: 1.5rem 3rem;
+    // padding: 2rem 1rem 1rem 2rem;
   }
 
   &__head {

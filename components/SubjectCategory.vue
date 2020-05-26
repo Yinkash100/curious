@@ -14,80 +14,26 @@ export default {
   name: 'SubjectCategoryVue',
   data() {
     return {
-      subjects: [
-        {
-          name: 'all',
-        },
-        {
-          name: 'mathematics',
-        },
-        {
-          name: 'chemistry',
-          url: '',
-        },
-        {
-          name: 'history',
-          url: '',
-        },
-        {
-          name: 'english',
-          url: '',
-        },
-        {
-          name: 'biology',
-          url: '',
-        },
-        {
-          name: 'physics',
-          url: '',
-        },
-        {
-          name: 'social_studies',
-          url: '',
-        },
-        {
-          name: 'agriculture',
-          url: '',
-        },
-        {
-          name: 'arts',
-          url: '',
-        },
-        {
-          name: 'geography',
-          url: '',
-        },
-        {
-          name: 'business',
-          url: '',
-        },
-        {
-          name: 'computers',
-          url: '',
-        },
-        {
-          name: 'french',
-          url: '',
-        },
-        {
-          name: 'spanish',
-          url: '',
-        },
-        {
-          name: 'medicine',
-          url: '',
-        },
-        {
-          name: 'law',
-          url: '',
-        },
-        {
-          name: 'engineering',
-          icon: '',
-          url: '',
-        },
-      ],
+      subjects: '',
     }
+  },
+  created() {
+    if (this.subjects === '') {
+      this.getSubjects()
+    }
+  },
+  methods: {
+    getSubjects() {
+      this.$axios
+        .$get('/subjects')
+        .then((res) => {
+          this.subjects = res.map((respObject) => respObject.name)
+          console.log('subjects', this.subjects)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
   },
 }
 </script>

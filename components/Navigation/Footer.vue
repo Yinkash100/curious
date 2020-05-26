@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="footer-container">
     <section v-if="loggedIn" class="footer-links top-footer-link">
       <div class="footer-links-group">
         <h4 class="footer-links-head">Company</h4>
@@ -111,7 +111,9 @@
         <BaseSelect
           v-model="selectedInstitution"
           :label="`Browse brainly for your school`"
-          :options="curiousInstitutions"
+          :remote="true"
+          :url="'/institutions'"
+          :dataKey="'/text'"
           :defaultSelectedValue="'All'"
           class=""
           @clicked="visit"
@@ -173,50 +175,6 @@ export default {
   data() {
     return {
       selectedInstitution: '',
-      curiousInstitutions: [
-        'All',
-        'OAU',
-        'UniLag',
-        'FUTA',
-        'UniIbadan',
-        'UniBen',
-        'UniIlorin',
-        'FUTO',
-      ],
-      curiousInstitutionMapping: [
-        {
-          text: 'All',
-          link: 'curious.com.ng',
-        },
-        {
-          text: 'OAU',
-          link: 'oau.curious.com.ng',
-        },
-        {
-          text: 'Unilag',
-          link: 'unilag.curious.com.ng',
-        },
-        {
-          text: 'FUTA',
-          link: 'futa.curious.com.ng',
-        },
-        {
-          text: 'UniIbadan',
-          link: 'ui.curious.com.ng',
-        },
-        {
-          text: 'UniBen',
-          link: 'ui.curious.com.ng',
-        },
-        {
-          text: 'UniIlorin',
-          link: 'uniilorin.curious.com.ng',
-        },
-        {
-          text: 'FUTO',
-          link: 'futo.curious.com.ng',
-        },
-      ],
     }
   },
   computed: {
@@ -226,7 +184,6 @@ export default {
   },
   methods: {
     visit(institution) {
-      console.log(institution)
       console.log('He selected', this.selectedInstitution)
     },
   },
@@ -234,11 +191,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.container {
-  padding: 1rem 2rem;
+.footer-container {
+  padding: 2rem 1rem;
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
   justify-content: space-between;
 }
 h3 {

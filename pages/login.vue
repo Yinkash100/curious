@@ -74,24 +74,20 @@
 
 <script>
 import { required, email } from 'vuelidate/lib/validators'
+// import requiresNoAuth from '../middleware/requiresNoAuth'
 
 export default {
   auth: false,
-  middleware: 'requiresNoAuth',
+  // middleware: 'requiresNoAuth',
   name: 'Login',
   data() {
     return {
       showPassword: false,
       // error: this.$store.$state.,
       loginDetails: {
-        email: '',
-        password: '',
+        email: 'yinkash1@gmail.com',
+        password: 'Eluku@41',
       },
-    }
-  },
-  beforeCreate() {
-    if (this.$cookies.get('user')) {
-      this.$router.push({ name: 'dashboard' })
     }
   },
   methods: {
@@ -133,9 +129,10 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  padding: 6rem 0.75rem;
+  width: 100%;
+  padding: 6rem 0 0.75rem 0;
   @include respond(tab-port) {
-    padding: 6rem 3rem;
+    padding: 6rem 0 3rem;
   }
 }
 .login {
@@ -163,5 +160,8 @@ export default {
   &__items {
     margin: 3rem auto;
   }
+}
+.form__label {
+  font-size: 0.8rem;
 }
 </style>

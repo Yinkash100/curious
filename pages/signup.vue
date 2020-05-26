@@ -117,12 +117,13 @@
 
 <script>
 import { required, email, sameAs } from 'vuelidate/lib/validators'
+// import requiresNoAuth from '../middleware/requiresNoAuth'
 import Logo from '@/components/Logos/Logo'
 import SignupForm from '@/components/Forms/SignupForm'
 
 export default {
   auth: false,
-  middleware: 'requiresNoAuth',
+  // middleware: 'requiresNoAuth',
   name: 'Signup',
   components: {
     Logo,
@@ -136,11 +137,6 @@ export default {
         email: '',
         checkbox: '',
       },
-    }
-  },
-  beforeCreate() {
-    if (this.$cookies.get('user')) {
-      this.$router.push({ name: 'dashboard' })
     }
   },
   head() {
@@ -197,7 +193,7 @@ export default {
 
     @include respond(tab-land) {
       display: flex;
-      padding: 1.5rem 1.5rem;
+      padding: 4rem 1.5rem 1.5rem;
     }
   }
 

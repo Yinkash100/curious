@@ -89,6 +89,8 @@ export default {
 .nav-buttons {
   display: block;
   width: 100%;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
   @include respond(tab-land) {
     padding: 0;
     font-size: 1.2rem;

@@ -5,9 +5,7 @@ export default {
   /*
    ** Self defined for routers
    */
-  router: {
-
-  },
+  router: {},
   /*
    ** Headers of the page
    */
@@ -50,6 +48,7 @@ export default {
   plugins: [
     { src: '@/plugins/Vuelidate', mode: 'client', ssr: false },
     '@/plugins/GlobalComponents',
+    { src: '~/plugins/localStorage.js', ssr: false, mode: 'client' },
   ],
   /*
    ** Nuxt.js dev-modules

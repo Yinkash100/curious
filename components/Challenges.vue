@@ -6,10 +6,23 @@
       class="challenge"
     >
       <div class="challenge__badge">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 60">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 40 60"
+          :class="`challenge_-badge-svg badgeColor${challenge.id % 3}`"
+        >
           <path
+            :class="`badgeColor${challenge.id % 3}`"
             d="M.9 19.1L17.9.9C19.1-.3 21-.3 22.1.9l17 18.2c.6.6.9 1.3.9 2.1v17.5c0 .8-.3 1.6-.9 2.1L22.1 59c-1.2 1.2-3.1 1.2-4.2 0L.9 40.8c-.6-.5-.9-1.2-.9-2V21.2c0-.7.3-1.5.9-2.1zM20 45c8.3 0 15-6.7 15-15s-6.7-15-15-15S5 21.7 5 30s6.7 15 15 15z"
           ></path>
+          <image
+            x="10"
+            y="15"
+            width="70"
+            height="70"
+            :xlink:href="`svgIcons/${challenge.subject_category}.svg`"
+            class="challenge__badge-icon"
+          />
         </svg>
       </div>
       <div class="challenge__text">
@@ -41,22 +54,34 @@
 <script>
 export default {
   name: 'Challenges',
+  props: {
+    fetchNextChallengeOnly: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data() {
     return {
       challenges: '',
+      challengeUrl: '',
     }
   },
   created() {
     if (this.challenges === '') {
-      this.getChallenges()
+      this.challengeUrl = this.fetchNextChallengeOnly
+        ? '/challenges?id=1'
+        : '/challenges'
+      console.log('challengeUrl', this.challengeUrl)
+      this.getChallenges(this.challengeUrl)
     }
   },
   methods: {
     getChallenges() {
       console.log('about to get the challenges')
       this.$axios
-        .$get('/challenges')
+        .$get(this.challengeUrl)
         .then((res) => {
+          console.log('challenge for this page', res)
           this.challenges = res
         })
         .catch((err) => {
@@ -74,19 +99,29 @@ export default {
 
 <style scoped lang="scss">
 .challenges {
-  padding: 1rem 2rem;
+  padding: 2rem 1rem;
   font-size: 0.8rem;
-  /*min-height: 100%;*/
-  overflow-y: scroll;
+  overflow: hidden;
 }
 .challenge {
   display: flex;
   &__badge {
+    position: relative;
     order: 1;
     width: 3rem;
     height: 4rem;
     margin-right: 1rem;
     color: $color-grey-dark;
+
+    &-svg {
+      display: block;
+      position: relative;
+    }
+    &-icon {
+      display: block;
+      width: 50%;
+      height: 50%;
+    }
   }
   &__text {
     margin-bottom: 1rem;
@@ -108,6 +143,16 @@ export default {
   color: $color-grey-dark;
 }
 .btn-text {
-  padding: 0 2rem;
+  margin-top: -1.5rem;
+  padding: 1rem 2rem 1rem 0;
+}
+.badgeColor0 {
+  fill: rgb(255, 199, 191);
+}
+.badgeColor1 {
+  fill: rgb(189, 199, 251);
+}
+.badgeColor2 {
+  fill: rgb(254, 221, 142);
 }
 </style>

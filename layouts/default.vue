@@ -33,7 +33,9 @@ export default {
         return Promise.reject(error)
       }
     )
+    // this.$store.state.userProfile = this.$axios.$get(/user?id)
   },
+  methods: {},
   head() {
     return {
       titleTemplate: '%s - Curious get smarter everyday',

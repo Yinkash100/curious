@@ -25,30 +25,10 @@
         </div>
       </div>
       <div class="user-rank">
-        <div class="user-rank__progress">
-          <ProgressRing
-            :radius="50"
-            :stroke="4"
-            :progress="this.profile.points"
-          />
-        </div>
-        <div class="user-rank__details">
-          <div class="user-rank__details-name">
-            <p>{{ profile.username }}</p>
-          </div>
-          <div class="user-rank__details-rank">
-            <span class="user-rank__details-rank--small">Rank: </span
-            ><span class="user-rank__details-rank--bold">{{
-              profile.rank
-            }}</span>
-          </div>
-          <div class="user-rank__details-category">
-            <span><font-awesome-icon icon="universal-access" /></span
-            ><span>{{ profile.points }}/{{ profile.rankLimit }}</span>
-          </div>
-        </div>
+        <UserRankCard />
       </div>
-      <div class="challenges">
+
+      <div class="challenge-tab">
         <Challenges />
       </div>
       <div class="tab-links">
@@ -111,22 +91,15 @@
 </template>
 
 <script>
-import ProgressRing from './ProgressRing'
 import SubscriptionDetails from './SubscriptionDetails'
 import Challenges from './Challenges'
+import UserRankCard from './UserRankCard'
 export default {
   name: 'UserAccountDropDown',
-  components: { Challenges, SubscriptionDetails, ProgressRing },
+  components: { UserRankCard, Challenges, SubscriptionDetails },
   props: {},
   data() {
-    return {
-      profile: {
-        username: 'Yinka',
-        rank: 'Beginner',
-        points: 75,
-        rankLimit: 100,
-      },
-    }
+    return {}
   },
   methods: {
     closeDropDown() {
@@ -165,26 +138,16 @@ export default {
     font-size: 1.1rem;
   }
 }
-.user-rank {
-  margin: 1rem;
-  display: flex;
-  flex-wrap: nowrap;
-  &__progress {
-    display: block;
-  }
-  &__details {
-    display: block;
-    margin: 1rem 0;
-    &-category {
-      color: $color-green-progress;
-    }
-  }
-}
-.challenges {
+
+.challenge-tab {
   height: 40vh;
   border-bottom: 1px solid $color-grey-dark;
   border-top: 1px solid $color-grey-dark;
-  padding: 1rem 0.25rem;
+  padding: 0.5rem 1rem;
+  overflow-y: scroll;
+  @include respond(tab-port) {
+    padding: 1rem 2rem;
+  }
 }
 .tab-links {
   background-color: $color-white;

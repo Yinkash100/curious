@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="index-container">
     <!--    <Nav :parentDefinedStyle="dynamicStyle" />-->
     <div class="wall">
       <div class="wall-items">
@@ -129,11 +129,10 @@ import Testimonials from '../components/Testimonials'
 
 export default {
   auth: false,
-  middleware: 'requiresNoAuth',
+  // middleware: 'requiresNoAuth',
   components: {
     Footer,
     FreeTrialCard,
-    // Nav,
     SubjectCategory,
     Testimonials,
   },
@@ -148,10 +147,6 @@ export default {
       this.$store.dispatch('nav/addStyle', this.dynamicStyle)
     },
   },
-  created() {
-    // this.$store.dispatch('nav/addStyle', this.dynamicStyle)
-  },
-
   beforeMount() {
     this.$store.dispatch('nav/addStyle', 'indexPageStyle')
     window.addEventListener('scroll', this.handleScroll)
@@ -180,6 +175,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.index-container {
+  width: 100%;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
 .wall {
   padding: 8rem 0.75rem 5rem 1.5rem;
   background-color: $color-background-default;

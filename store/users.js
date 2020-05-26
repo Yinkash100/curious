@@ -13,12 +13,12 @@ export const mutations = {
     this.$cookies.set('user', userData, {
       path: '/',
     })
+    this.$cookies.set('loggedIn', state.loggedIn)
   },
   CLEAR_USER_DATA(state) {
     state.user = null
     state.loggedIn = null
-    this.$cookies.remove('user')
-    console.log(state.loggedIn)
+    this.$cookies.removeAll()
   },
 }
 
@@ -61,7 +61,6 @@ export const actions = {
   },
   logout({ commit }) {
     commit('CLEAR_USER_DATA')
-    console.log('we don clear am')
   },
 }
 
