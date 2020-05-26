@@ -85,8 +85,8 @@ export default {
       showPassword: false,
       // error: this.$store.$state.,
       loginDetails: {
-        email: 'yinkash1@gmail.com',
-        password: 'Eluku@41',
+        email: '',
+        password: '',
       },
     }
   },
