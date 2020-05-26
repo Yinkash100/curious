@@ -5,9 +5,25 @@
       "password": "$2a$10$t3iBAF72nryCvqcn28k2GuFdoRvqr36hrQOiwXvjveaKn/zB.l6P.",
       "id": "e8b115d1-6155-4551-8fd0-b4ab00782f5b",
       "fullName": "Ajagbe Thomas",
+      "profilePictureLink": "https://www.unsplash.com/no/use/me/shine.png",
       "username": "yinkash100",
-      "challenge_passed": [1, 2],
-      "curious_points": 10
+      "rank": "Beginner",
+      "challenge_passed": [1, 2, 4],
+      "date_registered": "2020-05-26T18:35:01.090Z",
+      "points": 10,
+      "Level": "Secondary School",
+      "warnings": 0,
+      "questions_asked": 0,
+      "questions_answered": 0,
+      "curious_answers": 0,
+      "curious_answers_in_last_30_days": 0,
+      "questions_answers_reported": 0,
+      "questions_answers_reported_incorrectly": 0,
+      "challenge_in_progress": [{
+        "id": 0,
+        "time_started": "2020-05-26T18:35:01.090Z",
+        "expiry_time": "2020-05-26T20:35:01.090Z"
+      }]
     },
     {
       "email": "yinkash1@gmail.com",

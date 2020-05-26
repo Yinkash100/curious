@@ -2,8 +2,8 @@
   <div class="subject-slideshow">
     <div class="subject-slideshow-pack">
       <div v-for="(subject, key) in subjects" :key="key" class="each-subject">
-        <img :src="`svgIcons/${subject.name}.svg`" class="each-subject-icon" />
-        {{ subject.name }}
+        <img :src="`svgIcons/${subject}.svg`" class="each-subject-icon" />
+        {{ subject }}
       </div>
     </div>
   </div>
@@ -28,7 +28,6 @@ export default {
         .$get('/subjects')
         .then((res) => {
           this.subjects = res.map((respObject) => respObject.name)
-          console.log('subjects', this.subjects)
         })
         .catch((err) => {
           console.log(err)

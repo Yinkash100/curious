@@ -108,7 +108,6 @@ export default {
         .$get('/subjects')
         .then((res) => {
           this.subjects = res.map((respObject) => respObject.name)
-          console.log('subjects', this.subjects)
         })
         .catch((err) => {
           console.log(err)
