@@ -21,7 +21,7 @@
           <CuriousAnswerCard />
         </div>
         <div class="main-challenge">
-          <Challenges :fetchNextChallengeOnly="true" />
+          <Challenges :fetch-next-challenge-only="true" />
         </div>
         <div class="filter">
           <div class="filter__text">Filter questions by</div>
@@ -29,16 +29,16 @@
             <BaseSelect
               :remote="true"
               :url="'/subjects'"
-              :dataKey="`name`"
+              :data-key="`name`"
               class="filter__select"
-              :defaultSelectedValue="`Subject`"
+              :default-selected-value="`Subject`"
             />
             <BaseSelect
               :remote="true"
               :url="'/institutions'"
-              :dataKey="`text`"
+              :data-key="`text`"
               class="filter__select"
-              :defaultSelectedValue="'Institutions'"
+              :default-selected-value="'Institutions'"
             />
           </div>
         </div>
@@ -73,7 +73,6 @@ import FreeTrialCard from '../components/FreeTrialCard'
 import CuriousAnswerCard from '../components/CuriousAnswerCard'
 export default {
   name: 'DashboardVue',
-  // middleware: 'requiresAuth',
   components: {
     CuriousAnswerCard,
     FreeTrialCard,

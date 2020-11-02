@@ -57,9 +57,7 @@
             </template>
           </div>
           <div class="login-button">
-            <button type="submit" class="btn btn--primary">
-              Login
-            </button>
+            <button type="submit" class="btn btn--primary">Login</button>
           </div>
         </div>
         <hr />
@@ -74,11 +72,8 @@
 
 <script>
 import { required, email } from 'vuelidate/lib/validators'
-// import requiresNoAuth from '../middleware/requiresNoAuth'
 
 export default {
-  auth: false,
-  // middleware: 'requiresNoAuth',
   name: 'Login',
   data() {
     return {
@@ -99,13 +94,18 @@ export default {
           message: 'please fill all fields correctly and try again',
         })
       } else {
-        this.$store
-          .dispatch('users/loginUser', this.loginDetails)
-          .then(() => {
-            this.$router.push({ name: 'dashboard' })
+        this.$axios
+          .$post('/api/user/login', this.loginDetails)
+          .then((res) => {
+            this.$store.dispatch('users/loginUser', res).then(() => {
+              this.$router.push('/dashboard')
+            })
           })
           .catch((err) => {
-            this.error = err
+            this.$store.dispatch('notification/add', {
+              type: 'error',
+              message: `Error creating user.\n ${err}`,
+            })
           })
       }
     },

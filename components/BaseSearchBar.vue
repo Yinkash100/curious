@@ -34,12 +34,12 @@ export default {
       searchItem: '',
     }
   },
+  computed: {},
   methods: {
     search() {
       console.log('He searched for ', this.searchItem)
     },
   },
-  computed: {},
 }
 </script>
 

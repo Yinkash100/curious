@@ -15,7 +15,7 @@
           v-model="question.subject"
           :label="'Subject'"
           :remote="true"
-          :dataKey="'text'"
+          :data-key="'text'"
           :url="'/subjects'"
           class="form__base-select select-subject"
         />
@@ -37,7 +37,7 @@
 
 <script>
 export default {
-  name: 'question',
+  name: 'Question',
   data() {
     return {
       question: {

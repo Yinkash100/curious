@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'AppButton.vue',
+  name: 'AppButtonVue',
   inheritAttrs: false,
   props: {
     class: {

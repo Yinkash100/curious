@@ -14,8 +14,8 @@
           :value="option"
           :selected="selectedValue === option"
         >
-          {{ option }}</option
-        >
+          {{ option }}
+        </option>
       </select>
       <font-awesome-icon icon="angle-down" class="append__btn-icon" />
     </div>

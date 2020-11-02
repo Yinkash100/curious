@@ -1,6 +1,20 @@
 <template>
   <div class="nav-main">
     <BaseSearchBar class="nav-main--search" />
+    <div class="action">
+      <div class="action-icon">
+        <font-awesome-icon :icon="['fas', 'user-alt']" />
+      </div>
+      <div class="action-icon">
+        <font-awesome-icon :icon="['fas', 'comment-alt']" />
+      </div>
+      <div class="action-icon">
+        <font-awesome-icon :icon="['fas', 'bell']" />
+      </div>
+      <div class="action-icon">
+        <font-awesome-icon :icon="['fas', 'user-friends']" />
+      </div>
+    </div>
     <font-awesome-layers class="nav-main--icon fa-3x">
       <font-awesome-icon
         icon="user-circle"
@@ -15,7 +29,7 @@
 <script>
 import UserAccountDropDown from '../UserAccountDropDown'
 export default {
-  name: 'NavMain.vue',
+  name: 'NavMain',
   components: {
     UserAccountDropDown,
   },
@@ -26,7 +40,9 @@ export default {
   },
   methods: {
     toggleAccountPage() {
+      console.log('called the toggle something something')
       this.showAccountPage = !this.showAccountPage
+      console.log(this.showAccountPage)
     },
   },
 }
@@ -44,6 +60,7 @@ export default {
     display: flex;
     align-items: center;
     width: 100%;
+    padding: 0.75rem 1rem;
   }
 
   &--icon {
@@ -52,7 +69,7 @@ export default {
     float: right;
     margin: 0rem 0.5rem;
     color: rgba($color-white, 0.8);
-    padding-left: 0.5rem;
+    padding: 0.5rem;
   }
 }
 .account-dropdown {
@@ -60,5 +77,20 @@ export default {
 }
 .user-circle {
   color: $color-grey-dark;
+}
+.action {
+  display: none;
+  @include respond(desktop) {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding: 1rem;
+    &-icon {
+      font-size: 1.2rem;
+      /*display: flex;*/
+      /*flex-wrap: nowrap;*/
+      padding: 0 1rem;
+    }
+  }
 }
 </style>

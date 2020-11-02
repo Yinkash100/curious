@@ -71,17 +71,14 @@ export default {
       this.challengeUrl = this.fetchNextChallengeOnly
         ? '/challenges?id=1'
         : '/challenges'
-      console.log('challengeUrl', this.challengeUrl)
       this.getChallenges(this.challengeUrl)
     }
   },
   methods: {
     getChallenges() {
-      console.log('about to get the challenges')
       this.$axios
         .$get(this.challengeUrl)
         .then((res) => {
-          console.log('challenge for this page', res)
           this.challenges = res
         })
         .catch((err) => {

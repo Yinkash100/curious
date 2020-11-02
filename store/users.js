@@ -6,14 +6,9 @@ export const state = () => ({
 })
 
 export const mutations = {
-  SET_USER_DATA(state, userData) {
-    userData = JSON.stringify(userData)
+  SET_USER_DATA(state, user) {
+    state.user = user
     state.loggedIn = true
-    state.user = userData
-    this.$cookies.set('user', userData, {
-      path: '/',
-    })
-    this.$cookies.set('loggedIn', state.loggedIn)
   },
   CLEAR_USER_DATA(state) {
     state.user = null
@@ -23,41 +18,16 @@ export const mutations = {
 }
 
 export const actions = {
-  createUser({ commit, dispatch }, user) {
-    return this.$axios
-      .$post('/users', user)
-      .then((data) => {
-        commit('SET_USER_DATA', data)
-      })
-      .catch((error) => {
-        dispatch(
-          'notification/add',
-          {
-            type: 'error',
-            message: 'There was a problem creating user ' + error.message,
-          },
-          { root: true }
-        )
-        throw error
-      })
+  registerUser({ commit }, user) {
+    commit('SET_USER_DATA', user)
   },
-  loginUser({ commit, dispatch }, credentials) {
-    return this.$axios
-      .$post('/login', credentials)
-      .then((data) => {
-        commit('SET_USER_DATA', data)
-      })
-      .catch((error) => {
-        console.log('error', error)
-        dispatch(
-          'notification/add',
-          {
-            type: 'error',
-            message: 'Incorrect username or password',
-          },
-          { root: true }
-        )
-      })
+
+  loginUser({ commit }, res) {
+    this.$cookies.set('token', res.token)
+    this.$cookies.set('user', res.user)
+    this.$cookies.set('loggedIn', true)
+    this.$axios.setHeader('Authorization', res.token)
+    commit('SET_USER_DATA', res.user)
   },
   logout({ commit }) {
     commit('CLEAR_USER_DATA')

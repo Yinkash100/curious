@@ -74,7 +74,7 @@
         <div class="tab-link" @click="logout()">
           <nuxt-link to="" class="tab-link__group">
             <div class="tab-link__icon tab-link__icon-pretext">
-              <font-awesome-icon icon="sign-out-alt" style="color: red;" />
+              <font-awesome-icon icon="sign-out-alt" style="color: red" />
             </div>
             <div class="tab-link__text">
               <p>Log out</p>
@@ -127,6 +127,9 @@ export default {
   box-shadow: 0 0 1rem rgba($color-black, 0.1);
   border: 1px solid $color-grey-dark;
   overflow-y: scroll;
+  @include respond(desktop) {
+    display: none;
+  }
 }
 .action {
   display: flex;

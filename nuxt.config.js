@@ -1,7 +1,16 @@
-import requiresAuth from './middleware/requiresAuth'
-
+import path from 'path'
+import fs from 'fs'
 export default {
-  mode: 'universal',
+  /*
+   ** Make changes to the server to allow
+   ** for using https in localhost
+   */
+  server: {
+    https: {
+      key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
+      cert: fs.readFileSync(path.resolve(__dirname, 'server.crt')),
+    },
+  },
   /*
    ** Self defined for routers
    */
@@ -20,6 +29,28 @@ export default {
         name: 'description',
         content: process.env.npm_package_description || '',
       },
+      {
+        name: 'google-signin-client_id',
+        content: `${process.env.GOOGLE_OAUTH_CLIENT_ID}`,
+      },
+    ],
+    script: [
+      {
+        src: 'https://apis.google.com/js/platform.js',
+        async: true,
+        defer: true,
+      },
+      {
+        name: 'google-signin-scope',
+        content: 'profile email',
+      },
+      // {
+      //   async: true,
+      //   defer: true,
+      //   crossorigin: 'anonymous',
+      //   src: 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v8.0',
+      //   nonce: '63f7fdAt',
+      // },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -48,7 +79,6 @@ export default {
   plugins: [
     { src: '@/plugins/Vuelidate', mode: 'client', ssr: false },
     '@/plugins/GlobalComponents',
-    { src: '~/plugins/localStorage.js', ssr: false, mode: 'client' },
   ],
   /*
    ** Nuxt.js dev-modules
@@ -105,7 +135,8 @@ export default {
   },
 
   axios: {
-    baseURL: 'https://my-json-server.typicode.com/yinkash100/curious',
+    baseURL: 'https://curious-apis.herokuapp.com',
+    // baseURL: 'http://127.0.0.1:3002',
     withCredentials: false, // This is the default
     headers: {
       Accept: 'application/json',

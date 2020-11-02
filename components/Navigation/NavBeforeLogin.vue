@@ -8,7 +8,7 @@
     </div>
     <div class="nav__scrolled">
       <div class="nav__scrolled-search" :class="`${parentDefinedStyle}`">
-        <BaseSearchBar :inputStyle="'navSearchStyle'" />
+        <BaseSearchBar :input-style="'navSearchStyle'" />
       </div>
       <div
         class="nav__scrolled-btn nav-menu-icon"

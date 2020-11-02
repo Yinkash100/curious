@@ -22,14 +22,9 @@
 <script>
 import ProgressRing from './ProgressRing'
 export default {
-  name: 'UserRankCard.vue',
+  name: 'UserRankCardVue',
   components: {
     ProgressRing,
-  },
-  created() {
-    // if (user) {
-    //   console.log('the user is ', user)
-    // }
   },
   data() {
     return {
@@ -40,6 +35,11 @@ export default {
         rankLimit: 100,
       },
     }
+  },
+  created() {
+    // if (user) {
+    //   console.log('the user is ', user)
+    // }
   },
 }
 </script>

@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <!-- <div id="fb-root"></div> -->
     <Nav />
     <nuxt />
     <NotificationContainer />

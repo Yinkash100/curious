@@ -85,7 +85,7 @@
 <script>
 import Logo from './Logos/LogoSmall'
 export default {
-  name: 'CuriousAnswerCard.vue',
+  name: 'CuriousAnswerCardVue',
   components: { Logo },
   methods: {
     goto(url) {

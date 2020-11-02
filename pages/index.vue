@@ -85,9 +85,7 @@
           <h3>Boost learning and fast track your progress with Curious plus</h3>
         </div>
         <div class="trial-ad-body">
-          <p>
-            Access unlimited answers, faster
-          </p>
+          <p>Access unlimited answers, faster</p>
         </div>
       </div>
     </section>
@@ -128,8 +126,6 @@ import SubjectCategory from '../components/SubjectCategory'
 import Testimonials from '../components/Testimonials'
 
 export default {
-  auth: false,
-  // middleware: 'requiresNoAuth',
   components: {
     Footer,
     FreeTrialCard,

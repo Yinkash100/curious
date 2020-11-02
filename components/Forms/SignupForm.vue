@@ -4,76 +4,51 @@
       <h2 class="form__head u-margin-bottom-small u-center-text">
         Create a free Curious Account
       </h2>
-      <div v-if="formLevel === 1">
-        <div>
-          <div class="form__group">
-            <label for="username" class="form__label">Username</label>
-            <input
-              id="username"
-              v-model="userCredential.username"
-              class="form__input"
-              type="text"
-              placeholder="Username"
-              @blur="$v.userCredential.username.$touch()"
-            />
-            <template v-if="$v.userCredential.username.$error">
-              <p
-                v-if="!$v.userCredential.username.required"
-                class="errorMessage"
-              >
-                Please chose a username
-              </p>
-            </template>
-          </div>
-        </div>
-        <div>
-          <div class="form__group">
-            <label for="pass1" class="form__label">Password</label>
-            <input
-              id="pass1"
-              v-model="userCredential.password"
-              class="form__input"
-              type="password"
-              placeholder="Password"
-              @blur="$v.userCredential.password.$touch()"
-            />
-            <template v-if="$v.userCredential.password.$error">
-              <p
-                v-if="!$v.userCredential.password.required"
-                class="errorMessage"
-              >
-                Please enter a password
-              </p>
-              <p
-                v-if="!$v.userCredential.password.minLength"
-                class="errorMessage"
-              >
-                Password must be at least eight (8) characters
-              </p>
-            </template>
-          </div>
-        </div>
 
-        <div>
-          <div v-if="!$v.userCredential.password.$invalid" class="form__group">
-            <label for="pass2" class="form__label">Retype password</label>
-            <input
-              id="pass2"
-              v-model="userCredential.retypePassword"
-              type="password"
-              placeholder="Retype password"
-              class="form__input"
-              @blur="$v.userCredential.retypePassword.$touch()"
-            />
-            <template v-if="$v.userCredential.retypePassword.$error">
-              <p v-if="!$v.userCredential.password.sameAs" class="errorMessage">
-                password must match
-              </p>
-            </template>
-          </div>
+      <div>
+        <div class="form__group">
+          <label for="pass1" class="form__label">Password</label>
+          <input
+            id="pass1"
+            v-model="userCredential.password"
+            class="form__input"
+            type="password"
+            placeholder="Password"
+            @blur="$v.userCredential.password.$touch()"
+          />
+          <template v-if="$v.userCredential.password.$error">
+            <p v-if="!$v.userCredential.password.required" class="errorMessage">
+              Please enter a password
+            </p>
+            <p
+              v-if="!$v.userCredential.password.minLength"
+              class="errorMessage"
+            >
+              Password must be at least eight (8) characters
+            </p>
+          </template>
         </div>
       </div>
-      <div v-else>
+
+      <div>
+        <div v-if="!$v.userCredential.password.$invalid" class="form__group">
+          <label for="pass2" class="form__label">Retype password</label>
+          <input
+            id="pass2"
+            v-model="userCredential.retypePassword"
+            type="password"
+            placeholder="Retype password"
+            class="form__input"
+            @blur="$v.userCredential.retypePassword.$touch()"
+          />
+          <template v-if="$v.userCredential.retypePassword.$error">
+            <p v-if="!$v.userCredential.password.sameAs" class="errorMessage">
+              password must match
+            </p>
+          </template>
+        </div>
+      </div>
+      <div>
         <div class="animate-down">
           <div>
             <div col="12" class="u-margin-bottom-small">
@@ -132,7 +107,6 @@
 </template>
 
 <script>
-import { v4 as uuidv4 } from 'uuid'
 import { required, email, sameAs, minLength } from 'vuelidate/lib/validators'
 export default {
   auth: false,
@@ -145,7 +119,6 @@ export default {
   data() {
     return {
       userCredential: {
-        id: uuidv4(),
         fullName: '',
         username: '',
         email: this.email,
@@ -202,12 +175,19 @@ export default {
     createUser() {
       if (!this.$v.userCredential.fullName.$invalid) {
         delete this.userCredential.retypePassword
-        this.$store
-          .dispatch('users/createUser', this.userCredential)
-          .then(() => {
-            setTimeout(() => {
+        this.$axios
+          .$post('/api/user', this.userCredential)
+          .then((res) => {
+            this.$store.dispatch('users/loginUser', res).then(() => {
               this.$router.push('/dashboard')
-            }, 2000)
+            })
+          })
+          .catch((err) => {
+            console.log('Error : ', err)
+            this.$store.dispatch('notification/add', {
+              type: 'error',
+              message: `Error creating user.\n ${err}`,
+            })
           })
       } else {
         this.$v.userCredential.fullName.$touch()
@@ -232,6 +212,7 @@ export default {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
+  justify-items: right;
 
   &-left {
     display: block;

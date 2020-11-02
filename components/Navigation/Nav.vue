@@ -28,7 +28,9 @@ export default {
     // },
   },
   data() {
-    return {}
+    return {
+      pageIsIndex: false,
+    }
   },
   computed: {
     ...mapGetters({
@@ -36,7 +38,14 @@ export default {
       parentDefinedStyle: 'nav/parentDefinedStyle',
     }),
   },
-  methods: {},
+  created() {
+    // this.getCallingPage()
+  },
+  methods: {
+    getCallingPage() {
+      // this.pageIsIndex = this.$nuxt.$route.name === 'index' : true e
+    },
+  },
 }
 </script>
 

@@ -113,8 +113,8 @@
           :label="`Browse brainly for your school`"
           :remote="true"
           :url="'/institutions'"
-          :dataKey="'/text'"
-          :defaultSelectedValue="'All'"
+          :data-key="'/text'"
+          :default-selected-value="'All'"
           class=""
           @clicked="visit"
         />
