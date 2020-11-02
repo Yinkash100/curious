@@ -183,7 +183,6 @@ export default {
             })
           })
           .catch((err) => {
-            console.log('Error : ', err)
             this.$store.dispatch('notification/add', {
               type: 'error',
               message: `Error creating user.\n ${err}`,
